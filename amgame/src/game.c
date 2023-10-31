@@ -5,7 +5,7 @@
 // Operating system is a C program!
 int main(const char *args) {
   ioe_init();
-  printf("Hello World from " __ISA__ " program!\n");
+  // printf("Hello World from " __ISA__ " program!\n");
   puts("mainargs = \"");
   puts(args); // make run mainargs=xxx
   puts("\"\n");
