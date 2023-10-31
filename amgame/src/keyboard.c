@@ -11,6 +11,7 @@ void print_key() {
   ioe_read(AM_INPUT_KEYBRD, &event);
   if (event.keycode != AM_KEY_NONE && event.keydown) {
     puts("Key pressed: ");
+    assert(0);
     puts(key_names[event.keycode]);
     puts("\n");
   }
