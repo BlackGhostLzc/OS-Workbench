@@ -18,4 +18,3 @@ void print_key()
     puts("\n");
   }
 }
-
