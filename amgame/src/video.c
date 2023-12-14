@@ -10,7 +10,7 @@ static void init()
   ioe_read(AM_GPU_CONFIG, &info);
   w = info.width;
   h = info.height;
-  printf("w = %d, h = %d\n", w, h);
+  printf("w \n");
 }
 
 static void draw_tile(int x, int y, int w, int h, uint32_t color)
