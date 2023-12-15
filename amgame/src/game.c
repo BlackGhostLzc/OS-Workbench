@@ -16,7 +16,16 @@ int main(const char *args)
   int h = info.height;
   printf("w = %d and h = %d\n", w, h);
 
-  splash();
+  // splash();
+
+  while (1)
+  {
+    AM_TIMER_UPTIME_T time;
+    ioe_read(AM_TIMER_UPTIME, &time);
+    // uint32_t low = time.us;
+    uint32_t high = time.us >> 32;
+    printf("%d\n", high);
+  }
 
   puts("Press any key to see its key code...\n");
   while (1)
