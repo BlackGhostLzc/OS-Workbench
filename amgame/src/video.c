@@ -33,7 +33,7 @@ static void draw_tile(int x, int y, int w, int h, uint32_t color)
 void splash()
 {
   init();
-  for (int x = 0; x * SIDE <= w; x++)
+  for (int x = 0; x * SIDE <= w; x++) // SIDE = 16  表示一个方格（填充最小块）的像素
   {
     for (int y = 0; y * SIDE <= h; y++)
     {
