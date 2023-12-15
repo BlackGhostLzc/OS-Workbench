@@ -2,7 +2,7 @@
 #include <game.h>
 
 // 每秒的帧数
-#define FPS 20
+#define FPS 30
 
 // Operating system is a C program!
 int main(const char *args)
@@ -24,22 +24,28 @@ int main(const char *args)
   uint32_t current_frame = 0;
   AM_TIMER_UPTIME_T time;
 
+  // 每一个帧，都要读取一个键盘按键
+  enum Diretion dir;
+
   while (1)
   {
+
     while (current_frame < next_frame)
     {
+      get_dir(&dir);
       ioe_read(AM_TIMER_UPTIME, &time);
       current_frame = time.us / (1000000 / FPS);
-      continue;
     }
-    printf("x\n");
+
     next_frame++;
   }
 
+  /*
   puts("Press any key to see its key code...\n");
   while (1)
   {
     print_key();
   }
   return 0;
+  */
 }

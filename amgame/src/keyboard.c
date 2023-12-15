@@ -12,7 +12,39 @@ void print_key()
   // puts("Key pressed: \n");
   if (event.keycode != AM_KEY_NONE && event.keydown)
   {
-    if (event.keydown && event.keycode == AM_KEY_ESCAPE) halt(0);
+    if (event.keydown && event.keycode == AM_KEY_ESCAPE)
+      halt(0);
+    puts("Key pressed: ");
+    puts(key_names[event.keycode]);
+    puts("\n");
+  }
+}
+
+void get_dir(enum Diretion *dir)
+{
+  AM_INPUT_KEYBRD_T event = {.keycode = AM_KEY_NONE};
+  ioe_read(AM_INPUT_KEYBRD, &event);
+  // puts("Key pressed: \n");
+  if (event.keycode != AM_KEY_NONE && event.keydown)
+  {
+    if (event.keydown && event.keycode == AM_KEY_ESCAPE)
+      halt(0);
+    if (event.keydown && event.keycode == AM_KEY_W)
+    {
+      *dir = UP;
+    }
+    else if (event.keydown && event.keycode == AM_KEY_A)
+    {
+      *dir = LEFT;
+    }
+    else if (event.keydown && event.keycode == AM_KEY_S)
+    {
+      *dir = DOWN;
+    }
+    else if (event.keydown && event.keycode == AM_KEY_D)
+    {
+      *dir = RIGHT;
+    }
     puts("Key pressed: ");
     puts(key_names[event.keycode]);
     puts("\n");
