@@ -2,7 +2,7 @@
 #include <game.h>
 
 // 每秒的帧数
-#define FPS 1
+#define FPS 20
 
 // Operating system is a C program!
 int main(const char *args)
