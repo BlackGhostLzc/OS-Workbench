@@ -37,6 +37,8 @@ int main(const char *args)
       current_frame = time.us / (1000000 / FPS);
     }
 
+    // draw_snake();
+
     next_frame++;
   }
 
