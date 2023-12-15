@@ -23,8 +23,7 @@ int main(const char *args)
     AM_TIMER_UPTIME_T time;
     ioe_read(AM_TIMER_UPTIME, &time);
     // uint32_t low = time.us;
-    uint32_t high = time.us >> 32;
-    printf("%d\n", high);
+    printf("%ld\n", time.us);
   }
 
   puts("Press any key to see its key code...\n");
