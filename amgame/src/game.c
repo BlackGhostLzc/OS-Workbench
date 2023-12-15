@@ -16,7 +16,7 @@ int main(const char *args)
   int h = info.height;
   printf("w = %d and h = %d\n", w, h);
 
-  splash();
+  // splash();
 
   puts("Press any key to see its key code...\n");
   while (1)
