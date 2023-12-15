@@ -1,6 +1,9 @@
 
 #include <game.h>
 
+// 每秒的帧数
+#define FPS 1
+
 // Operating system is a C program!
 int main(const char *args)
 {
@@ -17,13 +20,20 @@ int main(const char *args)
   printf("w = %d and h = %d\n", w, h);
 
   // splash();
+  uint32_t next_frame = 0;
+  uint32_t current_frame = 0;
+  AM_TIMER_UPTIME_T time;
 
   while (1)
   {
-    AM_TIMER_UPTIME_T time;
-    ioe_read(AM_TIMER_UPTIME, &time);
-    // uint32_t low = time.us;
-    printf("%ld\n", time.us);
+    while (current_frame < next_frame)
+    {
+      ioe_read(AM_TIMER_UPTIME, &time);
+      current_frame = time.us / (1000000 / FPS);
+      continue;
+    }
+    printf("x\n");
+    next_frame++;
   }
 
   puts("Press any key to see its key code...\n");
