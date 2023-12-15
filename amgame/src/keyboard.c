@@ -20,7 +20,7 @@ void print_key()
   }
 }
 
-void get_dir(enum Diretion *dir)
+void get_dir(int *dir)
 {
   AM_INPUT_KEYBRD_T event = {.keycode = AM_KEY_NONE};
   ioe_read(AM_INPUT_KEYBRD, &event);

@@ -4,6 +4,8 @@
 #define SIDE 16
 static int w, h;
 
+struct Snake;
+
 static void init()
 {
   AM_GPU_CONFIG_T info = {0};
@@ -42,5 +44,14 @@ void splash()
         draw_tile(x * SIDE, y * SIDE, SIDE, SIDE, 0xffffff); // white
       }
     }
+  }
+}
+
+void draw_snake(struct Snake *snake)
+{
+  int sz = snake->size;
+  for (int i = 0; i < sz; i++)
+  {
+    draw_tile((snake->pos[0]).x * SIDE, (snake->pos[0]).y * SIDE, SIDE, SIDE, 0xffffff);
   }
 }
