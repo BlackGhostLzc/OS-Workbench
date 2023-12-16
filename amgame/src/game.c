@@ -48,8 +48,9 @@ int main(const char *args)
       update_snake(&snake);
       // 清空画布
       gpu_clear(w, h);
+      draw_snake(&snake);
     }
-    draw_snake(&snake);
+    // draw_snake(&snake);
     next_frame++;
   }
 
