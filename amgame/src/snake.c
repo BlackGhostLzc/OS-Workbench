@@ -60,24 +60,20 @@ bool istouch_food(struct Snake *snake, struct Position *food)
 
 void incr_sz(struct Snake *snake, struct Position *food)
 {
-    printf("incr_sz\n");
     for (int i = snake->size - 1; i >= 0; i--)
     {
-        printf("incr_sz\n");
         snake->pos[i + 1].x = snake->pos[i].x;
         snake->pos[i + 1].y = snake->pos[i].y;
     }
     snake->size++;
     snake->pos[0].x = food->x;
     snake->pos[0].y = food->y;
-    printf("here\n");
 }
 
 void generate_newfood(struct Snake *snake, struct Position *food)
 {
     while (1)
     {
-        printf("here\n");
         int x = rand() % MAX_X;
         int y = rand() % MAX_Y;
         int flag = 1;
@@ -110,7 +106,6 @@ void update_snake(struct Snake *snake, struct Position *food)
     {
         // 重新生成一个 food 还要判断是否与snake冲突
         incr_sz(snake, food);
-        printf("here\n");
         generate_newfood(snake, food);
     }
 
