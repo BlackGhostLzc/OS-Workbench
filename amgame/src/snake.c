@@ -3,10 +3,14 @@
 
 void snake_init(struct Snake *snake)
 {
-    snake->size = 1;
+    snake->size = 3;
     snake->dir = NONE;
     snake->pos[0].x = 20;
     snake->pos[0].y = 20;
+    snake->pos[1].x = 19;
+    snake->pos[1].y = 20;
+    snake->pos[2].x = 18;
+    snake->pos[2].y = 20;
 }
 
 void update_snake(struct Snake *snake)
