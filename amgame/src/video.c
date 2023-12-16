@@ -61,7 +61,7 @@ void gpu_clear(int width, int height)
   {
     for (int j = 0; j < height / SIDE; j++)
     {
-      draw_tile(i * SIDE, j * SIDE, SIDE, SIDE, 0x3923922);
+      draw_tile(i * SIDE, j * SIDE, SIDE, SIDE, 0x000000);
     }
   }
 }
