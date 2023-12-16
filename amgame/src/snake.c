@@ -75,6 +75,7 @@ void generate_newfood(struct Snake *snake, struct Position *food)
 {
     while (1)
     {
+        printf("here\n");
         int x = rand() % MAX_X;
         int y = rand() % MAX_Y;
         int flag = 1;
