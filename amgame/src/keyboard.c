@@ -26,23 +26,24 @@ void get_dir(struct Snake *snake)
   AM_INPUT_KEYBRD_T event = {.keycode = AM_KEY_NONE};
   ioe_read(AM_INPUT_KEYBRD, &event);
   // puts("Key pressed: \n");
+  int prev_dir = snake->dir;
   if (event.keycode != AM_KEY_NONE && event.keydown)
   {
     if (event.keydown && event.keycode == AM_KEY_ESCAPE)
       halt(0);
-    if (event.keydown && event.keycode == AM_KEY_W)
+    if (event.keydown && event.keycode == AM_KEY_W && prev_dir != DOWN)
     {
       snake->dir = UP;
     }
-    else if (event.keydown && event.keycode == AM_KEY_A)
+    else if (event.keydown && event.keycode == AM_KEY_A && prev_dir != RIGHT)
     {
       snake->dir = LEFT;
     }
-    else if (event.keydown && event.keycode == AM_KEY_S)
+    else if (event.keydown && event.keycode == AM_KEY_S && prev_dir != UP)
     {
       snake->dir = DOWN;
     }
-    else if (event.keydown && event.keycode == AM_KEY_D)
+    else if (event.keydown && event.keycode == AM_KEY_D && prev_dir != LEFT)
     {
       snake->dir = RIGHT;
     }
