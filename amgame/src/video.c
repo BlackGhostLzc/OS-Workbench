@@ -68,5 +68,5 @@ void gpu_clear(int width, int height)
 
 void draw_food(struct Position *food)
 {
-  draw_tile(food->x * SIDE, food->y * SIDE, SIDE, SIDE, 0x555555);
+  draw_tile(food->x * SIDE, food->y * SIDE, SIDE, SIDE, 0x424231);
 }
