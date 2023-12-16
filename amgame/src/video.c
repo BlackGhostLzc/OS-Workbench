@@ -1,10 +1,9 @@
 
 #include <game.h>
+#include <snake.h>
 
 #define SIDE 16
 static int w, h;
-
-struct Snake;
 
 static void init()
 {

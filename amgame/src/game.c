@@ -1,17 +1,9 @@
 
 #include <game.h>
-// #include <snake.h>
+#include <snake.h>
 
 // 每秒的帧数
 #define FPS 30
-
-void snake_init(struct Snake *snake)
-{
-  snake->size = 1;
-  snake->dir = RIGHT;
-  snake->pos[0].x = 20;
-  snake->pos[0].y = 20;
-}
 
 // Operating system is a C program!
 int main(const char *args)
@@ -34,7 +26,6 @@ int main(const char *args)
   AM_TIMER_UPTIME_T time;
 
   // 每一个帧，都要读取一个键盘按键
-  int dir;
   struct Snake snake;
 
   snake_init(&snake);
@@ -44,12 +35,20 @@ int main(const char *args)
 
     while (current_frame < next_frame)
     {
-      get_dir(&dir);
+      get_dir(&snake);
       ioe_read(AM_TIMER_UPTIME, &time);
       current_frame = time.us / (1000000 / FPS);
     }
 
     draw_snake(&snake);
+
+    printf("%d", next_frame);
+    // 一秒 会移动 2格
+    if (next_frame % 15 == 0)
+    {
+      printf("get here\n");
+      update_snake(&snake);
+    }
 
     next_frame++;
   }

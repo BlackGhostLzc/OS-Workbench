@@ -1,4 +1,5 @@
 #include <game.h>
+#include <snake.h>
 
 #define KEYNAME(key) \
   [AM_KEY_##key] = #key,
@@ -20,7 +21,7 @@ void print_key()
   }
 }
 
-void get_dir(int *dir)
+void get_dir(struct Snake *snake)
 {
   AM_INPUT_KEYBRD_T event = {.keycode = AM_KEY_NONE};
   ioe_read(AM_INPUT_KEYBRD, &event);
@@ -31,19 +32,19 @@ void get_dir(int *dir)
       halt(0);
     if (event.keydown && event.keycode == AM_KEY_W)
     {
-      *dir = UP;
+      snake->dir = UP;
     }
     else if (event.keydown && event.keycode == AM_KEY_A)
     {
-      *dir = LEFT;
+      snake->dir = LEFT;
     }
     else if (event.keydown && event.keycode == AM_KEY_S)
     {
-      *dir = DOWN;
+      snake->dir = DOWN;
     }
     else if (event.keydown && event.keycode == AM_KEY_D)
     {
-      *dir = RIGHT;
+      snake->dir = RIGHT;
     }
     puts("Key pressed: ");
     puts(key_names[event.keycode]);
