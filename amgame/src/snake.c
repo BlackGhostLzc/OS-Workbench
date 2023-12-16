@@ -108,6 +108,7 @@ void update_snake(struct Snake *snake, struct Position *food)
     {
         // 重新生成一个 food 还要判断是否与snake冲突
         incr_sz(snake, food);
+        printf("here\n");
         generate_newfood(snake, food);
     }
 
