@@ -54,4 +54,6 @@ void update_snake(struct Snake *snake)
         snake->pos[0].x = snake->pos[0].x + 1;
         break;
     }
+
+    printf("%d\n", snake->pos[0].y);
 }
