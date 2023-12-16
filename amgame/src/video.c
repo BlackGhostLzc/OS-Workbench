@@ -51,7 +51,7 @@ void draw_snake(struct Snake *snake)
   int sz = snake->size;
   for (int i = 0; i < sz; i++)
   {
-    draw_tile((snake->pos[0]).x * SIDE, (snake->pos[0]).y * SIDE, SIDE, SIDE, 0xffffff);
+    draw_tile((snake->pos[i]).x * SIDE, (snake->pos[i]).y * SIDE, SIDE, SIDE, 0xffffff);
   }
 }
 
