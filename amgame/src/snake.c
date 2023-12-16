@@ -21,11 +21,15 @@ void update_snake(struct Snake *snake)
     {
     case UP:
         snake->pos[0].y = snake->pos[0].y - 1;
+        break;
     case LEFT:
         snake->pos[0].x = snake->pos[0].x - 1;
+        break;
     case DOWN:
         snake->pos[0].y = snake->pos[0].y + 1;
+        break;
     case RIGHT:
         snake->pos[0].x = snake->pos[0].x + 1;
+        break;
     }
 }
