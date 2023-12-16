@@ -2,7 +2,7 @@
 // #include <game.h>
 
 #define MAX_X 40
-#define MAX_Y 40
+#define MAX_Y 30
 
 void snake_init(struct Snake *snake)
 {
