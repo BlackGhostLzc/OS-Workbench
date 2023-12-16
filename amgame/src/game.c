@@ -30,6 +30,10 @@ int main(const char *args)
 
   snake_init(&snake);
 
+  struct Position food;
+  food.x = 10;
+  food.y = 10;
+
   while (1)
   {
 
@@ -48,6 +52,7 @@ int main(const char *args)
       // 清空画布
       gpu_clear(w, h);
       draw_snake(&snake);
+      draw_food(&food);
     }
     // draw_snake(&snake);
     next_frame++;

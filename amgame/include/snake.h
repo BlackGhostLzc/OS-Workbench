@@ -32,3 +32,5 @@ void snake_init(struct Snake *snake);
 void draw_snake(struct Snake *snake);
 void get_dir(struct Snake *snake);
 void update_snake(struct Snake *snake);
+
+void draw_food(struct Position *food);
