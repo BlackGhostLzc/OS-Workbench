@@ -28,11 +28,11 @@ int main(const char *args)
   // 每一个帧，都要读取一个键盘按键
   struct Snake snake;
 
-  snake_init(&snake);
-
   struct Position food;
   food.x = 10;
   food.y = 10;
+
+  snake_init(&snake);
 
   while (1)
   {
@@ -48,7 +48,7 @@ int main(const char *args)
     if (next_frame % 15 == 0)
     {
       // 更新位置
-      update_snake(&snake);
+      update_snake(&snake, &food);
       // 清空画布
       gpu_clear(w, h);
       draw_snake(&snake);

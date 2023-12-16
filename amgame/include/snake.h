@@ -31,6 +31,8 @@ struct Snake
 void snake_init(struct Snake *snake);
 void draw_snake(struct Snake *snake);
 void get_dir(struct Snake *snake);
-void update_snake(struct Snake *snake);
+void update_snake(struct Snake *snake, struct Position *food);
 
 void draw_food(struct Position *food);
+
+bool istouch_food(struct Snake *snake);

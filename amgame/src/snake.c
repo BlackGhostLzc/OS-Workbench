@@ -25,7 +25,7 @@ bool collide(struct Snake *snake)
     return false;
 }
 
-void update_snake(struct Snake *snake)
+void update_snake(struct Snake *snake, struct Position *food)
 {
     if (collide(snake))
     {
