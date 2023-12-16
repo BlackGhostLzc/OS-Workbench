@@ -35,4 +35,7 @@ void update_snake(struct Snake *snake, struct Position *food);
 
 void draw_food(struct Position *food);
 
-bool istouch_food(struct Snake *snake);
+bool istouch_food(struct Snake *snake, struct Position *food);
+
+void incr_sz(struct Snake *snake, struct Position *food);
+void generate_newfood(struct Snake *snake_init, struct Position *food);
