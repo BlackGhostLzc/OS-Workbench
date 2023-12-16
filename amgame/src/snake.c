@@ -1,6 +1,9 @@
 #include <snake.h>
 // #include <game.h>
 
+#define MAX_X 40
+#define MAX_Y 40
+
 void snake_init(struct Snake *snake)
 {
     snake->size = 3;
@@ -13,8 +16,23 @@ void snake_init(struct Snake *snake)
     snake->pos[2].y = 20;
 }
 
+bool collide(struct Snake *snake)
+{
+    if (snake->pos[0].x < 0 || snake->pos[0].x >= MAX_X || snake->pos[0].y < 0 || snake->pos[0].y >= MAX_Y)
+    {
+        return true;
+    }
+    return false;
+}
+
 void update_snake(struct Snake *snake)
 {
+    if (collide(snake))
+    {
+        snake_init(snake);
+        return;
+    }
+
     for (int i = snake->size - 1; i > 0; i--)
     {
         snake->pos[i].x = snake->pos[i - 1].x;

@@ -43,6 +43,7 @@ int main(const char *args)
     // 一秒 会移动 2格
     if (next_frame % 15 == 0)
     {
+      // 更新位置
       update_snake(&snake);
       // 清空画布
       gpu_clear(w, h);
