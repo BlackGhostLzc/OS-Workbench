@@ -4,7 +4,7 @@
 void snake_init(struct Snake *snake)
 {
     snake->size = 1;
-    snake->dir = RIGHT;
+    snake->dir = NONE;
     snake->pos[0].x = 20;
     snake->pos[0].y = 20;
 }
