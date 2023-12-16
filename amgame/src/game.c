@@ -40,8 +40,6 @@ int main(const char *args)
       current_frame = time.us / (1000000 / FPS);
     }
 
-    draw_snake(&snake);
-
     printf("%d\n", next_frame);
     // 一秒 会移动 2格
     if (next_frame % 15 == 0)
@@ -51,7 +49,7 @@ int main(const char *args)
       // 清空画布
       gpu_clear(w, h);
     }
-
+    draw_snake(&snake);
     next_frame++;
   }
 
