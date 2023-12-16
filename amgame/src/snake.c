@@ -60,7 +60,7 @@ bool istouch_food(struct Snake *snake, struct Position *food)
 
 void incr_sz(struct Snake *snake, struct Position *food)
 {
-    for (int i = 0; i < snake->size; i++)
+    for (int i = snake->size - 1; i >= 0; i++)
     {
         snake->pos[i + 1].x = snake->pos[i].x;
         snake->pos[i + 1].y = snake->pos[i].y;
