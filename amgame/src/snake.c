@@ -69,6 +69,7 @@ void incr_sz(struct Snake *snake, struct Position *food)
     snake->size++;
     snake->pos[0].x = food->x;
     snake->pos[0].y = food->y;
+    printf("here\n");
 }
 
 void generate_newfood(struct Snake *snake, struct Position *food)
