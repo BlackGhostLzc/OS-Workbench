@@ -7,6 +7,7 @@
 
 void splash();
 void print_key();
+void gpu_clear(int width, int height);
 
 static inline void puts(const char *s)
 {

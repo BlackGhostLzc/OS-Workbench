@@ -54,3 +54,14 @@ void draw_snake(struct Snake *snake)
     draw_tile((snake->pos[0]).x * SIDE, (snake->pos[0]).y * SIDE, SIDE, SIDE, 0xffffff);
   }
 }
+
+void gpu_clear(int width, int height)
+{
+  for (int i = 0; i < width / SIDE; i++)
+  {
+    for (int j = 0; j < height / SIDE; j++)
+    {
+      draw_tile(i, j, SIDE, SIDE, 0x000000);
+    }
+  }
+}

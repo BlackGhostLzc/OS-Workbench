@@ -42,12 +42,14 @@ int main(const char *args)
 
     draw_snake(&snake);
 
-    printf("%d", next_frame);
+    printf("%d\n", next_frame);
     // 一秒 会移动 2格
     if (next_frame % 15 == 0)
     {
       printf("get here\n");
       update_snake(&snake);
+      // 清空画布
+      gpu_clear(w, h);
     }
 
     next_frame++;
