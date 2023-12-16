@@ -18,7 +18,7 @@ void snake_init(struct Snake *snake)
 
 bool collide(struct Snake *snake)
 {
-    if (snake->pos[0].x < 0 || snake->pos[0].x >= MAX_X - 1 || snake->pos[0].y < 0 || snake->pos[0].y >= MAX_Y - 1)
+    if (snake->pos[0].x <= 1 || snake->pos[0].x >= MAX_X - 1 || snake->pos[0].y <= 0 || snake->pos[0].y >= MAX_Y - 1)
     {
         return true;
     }
