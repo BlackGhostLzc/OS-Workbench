@@ -46,11 +46,11 @@ bool istouch_food(struct Snake *snake, struct Position *food)
     }
     else if (abs(snake->pos[0].y - food->y) == 1)
     {
-        if (snake->pos[0].y - food->y == 1 && snake->dir == DOWN)
+        if (snake->pos[0].y - food->y == 1 && snake->dir == UP)
         {
             return true;
         }
-        else if (snake->dir == UP)
+        else if (snake->dir == DOWN)
         {
             return true;
         }
