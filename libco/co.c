@@ -166,6 +166,10 @@ void co_yield ()
 
     if (co_node->coroutine->status == CO_RUNNING)
     {
+      if (strcmp(current->name, "main") == 0)
+      {
+        printf("to main\n");
+      }
       longjmp(co_node->coroutine->context, JMP_RET);
     }
     else if (co_node->coroutine->status == CO_NEW)
