@@ -137,7 +137,8 @@ void co_yield ()
   int val = setjmp(current->context);
   if (val == 0)
   {
-    printf("val == 0\n");
+    // printf("val == 0\n");
+    co_node = co_node->next;
     while (co_node->coroutine->status != CO_RUNNING && co_node->coroutine->status != CO_NEW)
     {
       co_node = co_node->next;
@@ -169,7 +170,7 @@ void co_yield ()
   }
   else
   {
-    printf("val == 1\n");
+    // printf("val == 1\n");
     // 被切换为继续执行，状态一定是 RUNNING
     assert(val == JMP_RET && current->status == CO_RUNNING);
     return;
