@@ -210,7 +210,7 @@ static __attribute__((constructor)) void co_constructor(void)
 {
   // current 为 当前执行的协程
   current = co_start("main", NULL, NULL);
-  printf("%s\n", current->name);
+  printf("hhhh%s\n", current->name);
   current->status = CO_RUNNING;
 }
 
