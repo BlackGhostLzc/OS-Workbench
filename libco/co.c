@@ -3,6 +3,7 @@
 #include <setjmp.h>
 #include <stdint.h>
 #include <assert.h>
+#include <stdio.h>
 
 #define K 1024
 #define STACK_SIZE (64 * K)
