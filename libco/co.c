@@ -136,7 +136,6 @@ void co_wait(struct co *coroutine)
 
 void co_yield ()
 {
-
   int val = setjmp(current->context);
   if (val == 0)
   {
@@ -166,8 +165,10 @@ void co_yield ()
       // 它的等待者需要改为 RUNNING
       if (current->waiter != NULL)
       {
+        printf("hi\n");
         current->waiter->status = CO_RUNNING;
       }
+      printf("hilo\n");
       co_yield ();
     }
   }
