@@ -52,7 +52,7 @@ static Co_node *co_node = NULL;
 
 void insert_node(struct co *new_co)
 {
-  Co_node *node = (struct co_node *)malloc(sizeof(struct Co_node));
+  Co_node *node = (struct Co_node *)malloc(sizeof(struct Co_node));
   node->coroutine = new_co;
   if (co_node == NULL)
   {
