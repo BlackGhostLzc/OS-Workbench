@@ -161,6 +161,7 @@ void co_yield ()
 
       // 返回回来后
       current->status = CO_DEAD;
+      printf("dead\n");
 
       // 它的等待者需要改为 RUNNING
       if (current->waiter != NULL)
