@@ -96,9 +96,9 @@ static Co_node *remove_node()
 struct co *co_start(const char *name, void (*func)(void *), void *arg)
 {
   struct co *new_co = (struct co *)malloc(sizeof(struct co));
-  new_co->arg = (char *)arg;
+  new_co->arg = arg;
   new_co->func = func;
-  new_co->name = name;
+  new_co->name = (char *)name;
   new_co->status = CO_NEW;
   new_co->waiter = NULL;
   insert_node(new_co);
