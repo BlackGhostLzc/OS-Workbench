@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <assert.h>
 #include <stdio.h>
+#include <string.h>
 
 #define K 1024
 #define STACK_SIZE (64 * K)
