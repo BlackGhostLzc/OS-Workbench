@@ -21,6 +21,21 @@ static inline void stack_switch_call(void *sp, void *entry, uintptr_t arg)
   );
 }
 
+static inline void restore_return()
+{
+  asm volatile(
+#if __x86_64__
+      "movq 0(%%rsp), %%rcx"
+      :
+      :
+#else
+      "movl 4(%%esp), %%ecx"
+      :
+      :
+#endif
+  );
+}
+
 enum co_status
 {
   CO_NEW = 1, // 新创建，还未执行过
@@ -157,12 +172,14 @@ void co_yield ()
     {
       // 调用函数
       ((struct co volatile *)current)->status = CO_RUNNING;
-      printf("before\n");
+      // printf("before\n");
       stack_switch_call(current->stack + STACK_SIZE - 8, current->func, (uintptr_t)(current->arg));
+
+      restore_return();
 
       // 返回回来后
       current->status = CO_DEAD;
-      printf("dead\n");
+      // printf("dead\n");
 
       // 它的等待者需要改为 RUNNING
       if (current->waiter != NULL)
@@ -170,7 +187,7 @@ void co_yield ()
         printf("hi\n");
         current->waiter->status = CO_RUNNING;
       }
-      printf("hilo\n");
+      // printf("hilo\n");
       co_yield ();
     }
   }
