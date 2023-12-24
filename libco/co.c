@@ -110,6 +110,7 @@ struct co *co_start(const char *name, void (*func)(void *), void *arg)
 
 void co_wait(struct co *coroutine)
 {
+  printf("here\n");
   if (coroutine->status != CO_DEAD)
   {
     coroutine->waiter = current;
@@ -117,6 +118,8 @@ void co_wait(struct co *coroutine)
     current->status = CO_WAITING;
     co_yield ();
   }
+
+  printf("here\n");
 
   while (co_node->coroutine != coroutine)
   {
