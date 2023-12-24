@@ -179,7 +179,7 @@ static __attribute__((constructor)) void co_constructor(void)
   current->status = CO_RUNNING;
 }
 
-static __attribute__((deconstruct)) void co_deconstruct(void)
+static __attribute__((destructor)) void co_deconstruct(void)
 {
   while (co_node != NULL)
   {
