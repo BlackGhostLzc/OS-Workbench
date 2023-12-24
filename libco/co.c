@@ -137,7 +137,7 @@ void co_yield ()
   int val = setjmp(current->context);
   if (val == 0)
   {
-    printf("val == 0");
+    printf("val == 0\n");
     while (co_node->coroutine->status != CO_RUNNING && co_node->coroutine->status != CO_NEW)
     {
       co_node = co_node->next;
