@@ -151,7 +151,7 @@ void co_yield ()
     {
       // 调用函数
       ((struct co volatile *)current)->status = CO_RUNNING;
-      stack_switch_call(current->stack + STACK_SIZE - 8, current->func, current->arg);
+      stack_switch_call(current->stack + STACK_SIZE - 8, current->func, (void *)(current->arg));
 
       // 返回回来后
       current->status = CO_DEAD;
