@@ -96,7 +96,7 @@ static Co_node *remove_node()
 
 struct co *co_start(const char *name, void (*func)(void *), void *arg)
 {
-  printf("hello world\n");
+  // printf("hello world\n");
   struct co *new_co = (struct co *)malloc(sizeof(struct co));
   new_co->arg = arg;
   new_co->func = func;
