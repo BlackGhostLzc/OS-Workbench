@@ -96,7 +96,7 @@ static Co_node *remove_node()
 
 struct co *co_start(const char *name, void (*func)(void *), void *arg)
 {
-  printf("hello world\n");
+  // printf("hello world\n");
   struct co *new_co = (struct co *)malloc(sizeof(struct co));
   new_co->arg = arg;
   new_co->func = func;
@@ -137,6 +137,7 @@ void co_yield ()
   int val = setjmp(current->context);
   if (val == 0)
   {
+    printf("val == 0");
     while (co_node->coroutine->status != CO_RUNNING && co_node->coroutine->status != CO_NEW)
     {
       co_node = co_node->next;
@@ -168,6 +169,7 @@ void co_yield ()
   }
   else
   {
+    printf("val == 1\n");
     // 被切换为继续执行，状态一定是 RUNNING
     assert(val == JMP_RET && current->status == CO_RUNNING);
     return;
