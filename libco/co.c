@@ -159,12 +159,13 @@ void co_yield ()
     co_node = co_node->next;
     while (co_node->coroutine->status != CO_RUNNING && co_node->coroutine->status != CO_NEW)
     {
+      printf("%s\n", co_node->coroutine->name);
       co_node = co_node->next;
     }
 
     assert(co_node->coroutine->status == CO_RUNNING || co_node->coroutine->status == CO_NEW);
     current = co_node->coroutine;
-    printf("%s\n", current->name);
+    // printf("%s\n", current->name);
 
     if (co_node->coroutine->status == CO_RUNNING)
     {
