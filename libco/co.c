@@ -185,7 +185,7 @@ void co_yield ()
       restore_return();
 
       // 返回回来后
-      current->status = CO_DEAD;
+      ((struct co volatile *)current)->status = CO_DEAD;
       // printf("dead\n");
 
       // 它的等待者需要改为 RUNNING
