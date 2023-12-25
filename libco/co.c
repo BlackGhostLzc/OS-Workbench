@@ -169,10 +169,6 @@ void co_yield ()
 
     if (co_node->coroutine->status == CO_RUNNING)
     {
-      if (strcmp(current->name, "main") == 0)
-      {
-        printf("to main\n");
-      }
       longjmp(co_node->coroutine->context, JMP_RET);
     }
     else if (co_node->coroutine->status == CO_NEW)
@@ -181,12 +177,9 @@ void co_yield ()
       ((struct co volatile *)current)->status = CO_RUNNING;
       // printf("before\n");
       stack_switch_call(current->stack + STACK_SIZE - 8, current->func, (uintptr_t)(current->arg));
-      printf("finishedhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh\n");
       restore_return();
-      printf("finished\n");
       // 返回回来后
       ((struct co volatile *)current)->status = CO_DEAD;
-      // printf("dead\n");
 
       // 它的等待者需要改为 RUNNING
       if (current->waiter != NULL)
@@ -194,7 +187,7 @@ void co_yield ()
         printf("hi\n");
         current->waiter->status = CO_RUNNING;
       }
-      // printf("hilo\n");
+
       co_yield ();
     }
   }
