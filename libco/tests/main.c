@@ -39,11 +39,7 @@ static void test_1()
     struct co *thd2 = co_start("thread-2", work, "Y");
 
     co_wait(thd1);
-    printf("test1: thd1 finished\n");
     co_wait(thd2);
-    printf("test1: thd2 finished\n");
-
-    //    printf("\n");
 }
 
 // -----------------------------------------------
