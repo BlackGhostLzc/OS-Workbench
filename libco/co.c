@@ -17,9 +17,9 @@ static inline void stack_switch_call(void *sp, void *entry, void *arg)
       :
       : "b"((uintptr_t)sp - 48), "d"((uintptr_t)entry), "a"((uintptr_t)arg)
 #else
-      "movl %%ecx, 4(%0); movl %0, %%esp; movl %2, 0(%0); call *%1"
+      "movl %%eax, 0(%0); movl %%edi, 4(%0); movl %%esi, 8(%0); movl %%edx, 12(%0); movl %%ecx, 16(%0); movl %0, %%esp; movl %2, 0(%0); call *%1"
       :
-      : "b"((uintptr_t)sp - 8), "d"((uintptr_t)entry), "a"((uintptr_t)arg)
+      : "b"((uintptr_t)sp - 24), "d"((uintptr_t)entry), "a"((uintptr_t)arg)
 #endif
   );
 }
@@ -32,7 +32,7 @@ static inline void restore_return()
       :
       :
 #else
-      "movl 4(%%esp), %%ecx"
+      "movl 0(%%esp), %%eax; movl 4(%%esp), %%edi; movl 8(%%esp), %%esi; movl 12(%%esp), %%edx; movl 16(%%esp), %%ecx"
       :
       :
 #endif
