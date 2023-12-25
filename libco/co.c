@@ -13,7 +13,8 @@ static inline void stack_switch_call(void *sp, void *entry, void *arg)
 {
   asm volatile(
 #if __x86_64__
-      "movq %%rcx, 0(%0); movq %0, %%rsp; movq %2, %%rdi; call *%1"
+      // "movq %%rcx, 0(%0); movq %0, %%rsp; movq %2, %%rdi; call *%1"
+      "movq %0, %%rsp; movq %2, %%rdi; call *%1"
       :
       : "b"((uintptr_t)sp - 16), "d"((uintptr_t)entry), "a"((uintptr_t)arg)
 #else
@@ -175,7 +176,7 @@ void co_yield ()
       ((struct co volatile *)current)->status = CO_RUNNING;
       // printf("before\n");
       stack_switch_call(current->stack + STACK_SIZE, current->func, current->arg);
-      restore_return();
+      // restore_return();
       // 返回回来后
       ((struct co volatile *)current)->status = CO_DEAD;
 
