@@ -9,11 +9,12 @@
 #define K 1024
 #define STACK_SIZE (64 * K)
 
+// 需要保存调用者寄存器
 static inline void stack_switch_call(void *sp, void *entry, void *arg)
 {
   asm volatile(
 #if __x86_64__
-      "movq %%rcx, 0(%0);movq %0, %%rsp; movq %2, %%rdi; call *%1"
+      "movq %%rcx, 0(%0); movq %%rsi, 4(%0);movq %0, %%rsp; movq %2, %%rdi; call *%1"
       :
       : "b"((uintptr_t)sp - 16), "d"((uintptr_t)entry), "a"((uintptr_t)arg)
 #else
@@ -28,7 +29,7 @@ static inline void restore_return()
 {
   asm volatile(
 #if __x86_64__
-      "movq 0(%%rsp), %%rcx"
+      "movq 0(%%rsp), %%rcx; movq 4(%%rsp), %%rsi;"
       :
       :
 #else
