@@ -15,7 +15,7 @@ static inline void stack_switch_call(void *sp, void *entry, void *arg)
 #if __x86_64__
       "movq %%rax, 0(%0); movq %%rdi, 8(%0); movq %%rsi, 16(%0); movq %%rdx, 24(%0); movq %%rcx, 32(%0);movq %0, %%rsp; movq %2, %%rdi; call *%1"
       :
-      : "b"((uintptr_t)sp - 48), "d"((uintptr_t)entry), "a"((uintptr_t)arg)
+      : "b"((uintptr_t)sp - 8), "d"((uintptr_t)entry), "a"((uintptr_t)arg)
 #else
       "movl %%ecx, 4(%0); movl %0, %%esp; movl %2, 0(%0); call *%1"
       :
