@@ -9,15 +9,17 @@
 #define K 1024
 #define STACK_SIZE (64 * K)
 
-static inline void stack_switch_call(void *sp, void *entry, uintptr_t arg)
+static inline void stack_switch_call(void *sp, void *entry, void *arg)
 {
   asm volatile(
 #if __x86_64__
-      "movq %0, %%rsp; movq %2, %%rdi; jmp *%1"
-      : : "b"((uintptr_t)sp), "d"(entry), "a"(arg) : "memory"
+      "movq %%rcx, 0(%0); movq %0, %%rsp; movq %2, %%rdi; call *%1"
+      :
+      : "b"((uintptr_t)sp - 16), "d"((uintptr_t)entry), "a"((uintptr_t)arg)
 #else
-      "movl %0, %%esp; movl %2, 4(%0); jmp *%1"
-      : : "b"((uintptr_t)sp - 8), "d"(entry), "a"(arg) : "memory"
+      "movl %%ecx, 4(%0); movl %0, %%esp; movl %2, 0(%0); call *%1"
+      :
+      : "b"((uintptr_t)sp - 8), "d"((uintptr_t)entry), "a"((uintptr_t)arg)
 #endif
   );
 }
