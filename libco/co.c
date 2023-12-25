@@ -181,9 +181,9 @@ void co_yield ()
       ((struct co volatile *)current)->status = CO_RUNNING;
       // printf("before\n");
       stack_switch_call(current->stack + STACK_SIZE - 8, current->func, (uintptr_t)(current->arg));
-
+      printf("finished\n");
       restore_return();
-
+      printf("finished\n");
       // 返回回来后
       ((struct co volatile *)current)->status = CO_DEAD;
       // printf("dead\n");
