@@ -128,7 +128,7 @@ struct co *co_start(const char *name, void (*func)(void *), void *arg)
 
 void co_wait(struct co *coroutine)
 {
-  printf("here\n");
+
   if (coroutine->status != CO_DEAD)
   {
     coroutine->waiter = current;
@@ -136,8 +136,6 @@ void co_wait(struct co *coroutine)
     current->status = CO_WAITING;
     co_yield ();
   }
-
-  printf("here\n");
 
   while (co_node->coroutine != coroutine)
   {
@@ -166,7 +164,6 @@ void co_yield ()
 
     assert(co_node->coroutine->status == CO_RUNNING || co_node->coroutine->status == CO_NEW);
     current = co_node->coroutine;
-    printf("%s\n", current->name);
 
     if (co_node->coroutine->status == CO_RUNNING)
     {
@@ -185,7 +182,7 @@ void co_yield ()
       // 它的等待者需要改为 RUNNING
       if (current->waiter != NULL)
       {
-        printf("hi\n");
+
         current->waiter->status = CO_RUNNING;
       }
 
@@ -205,7 +202,6 @@ static __attribute__((constructor)) void co_constructor(void)
 {
   // current 为 当前执行的协程
   current = co_start("main", NULL, NULL);
-  printf("hhhh%s\n", current->name);
   current->status = CO_RUNNING;
 }
 
