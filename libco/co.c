@@ -28,8 +28,7 @@ static inline void restore_return()
 {
   asm volatile(
 #if __x86_64__
-      "movq 0(%%rsp), %%rcx"
-      "movq 8(%%rsp), %%rax"
+      "movq 0(%%rsp), %%rcx; movq 8(%%rsp), %%rax"
       :
       :
 #else
