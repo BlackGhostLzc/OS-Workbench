@@ -18,6 +18,7 @@ int main(int argc, char *argv[])
     {
       break;
     }
+    write(fd, line, strlen(line));
 
     printf("Got %zu chars.\n", strlen(line)); // ??
   }
