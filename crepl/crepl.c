@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
       }
 
       int res = wrapper();
-
+      dlclose(libHandle);
       printf("%d\n", res);
       wrapper_num++;
       fclose(f2);
