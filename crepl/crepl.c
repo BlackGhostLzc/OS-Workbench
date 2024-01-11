@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
       {
         perror("libc can not open");
       }
-      fprintf(f, "%s%s%d%s%s%s",
+      fprintf(f2, "%s%s%d%s%s%s",
               wrapper_func[0], wrapper_func[1], wrapper_num, wrapper_func[2], line, wrapper_func[3]);
       printf("here\n");
       update_lib();
