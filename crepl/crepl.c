@@ -60,6 +60,10 @@ int main(int argc, char *argv[])
       char wrapper_buf[1024];
       printf("here\n");
       FILE *f = fopen(libc_name, "a");
+      if (f == NULL)
+      {
+        perror("libc can not open");
+      }
       fprintf(f, "%s%s%d%s%s%s",
               "int ", "wrapper_", wrapper_num, "(){ return ", line, "; }\n");
       printf("here\n");
