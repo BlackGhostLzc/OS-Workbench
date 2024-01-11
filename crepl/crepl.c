@@ -68,9 +68,9 @@ int main(int argc, char *argv[])
       char wrapper_buf[1024];
       int len = strlen(line);
       printf("%d\n", len);
-      if (line[strlen(line) - 2] == '\n')
+      if (line[strlen(line)] == '\n')
       {
-        line[strlen(line) - 2] == '\0';
+        line[strlen(line)] == '\0';
       }
 
       FILE *f2 = fopen(libc_name, "a");
