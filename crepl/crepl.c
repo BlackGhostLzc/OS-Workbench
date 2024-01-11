@@ -58,10 +58,11 @@ int main(int argc, char *argv[])
     {
       // 这是一个表达式.需要构造一个wrapper， wrapper_0  wrapper_1
       char wrapper_buf[1024];
+      printf("here\n");
       FILE *f = fopen(libc_name, "a");
       fprintf(f, "%s%s%d%s%s%s",
               "int ", "wrapper_", wrapper_num, "(){ return ", line, "; }\n");
-
+      printf("here\n");
       update_lib();
 
       void *libHandle = dlopen(libso_name, RTLD_LAZY);
@@ -82,6 +83,7 @@ int main(int argc, char *argv[])
 
       printf("%d\n", res);
       wrapper_num++;
+      fclose(f);
     }
   }
 }
