@@ -57,9 +57,9 @@ int main(int argc, char *argv[])
     {
       // 是个函数申明
       // int func_name(int a, ...) {....; return x;}
-      FILE *f = fopen(libc_name, "a");
-      fprintf(f, "\n%s\n", line);
-      fclose(f);
+      FILE *f1 = fopen(libc_name, "a");
+      fprintf(f1, "\n%s\n", line);
+      fclose(f1);
       printf("Got %zu chars.\n", strlen(line)); // ??
     }
     else
@@ -67,8 +67,8 @@ int main(int argc, char *argv[])
       // 这是一个表达式.需要构造一个wrapper， wrapper_0  wrapper_1
       char wrapper_buf[1024];
       printf("here\n");
-      FILE *f = fopen(libc_name, "a");
-      if (f == NULL)
+      FILE *f2 = fopen(libc_name, "a");
+      if (f2 == NULL)
       {
         perror("libc can not open");
       }
@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
 
       printf("%d\n", res);
       wrapper_num++;
-      fclose(f);
+      fclose(f2);
     }
   }
 }
