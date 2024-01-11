@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
       char wrapper_buf[1024];
       printf("%s\n", line);
       printf("here\n");
-      FILE *f2 = fopen(libc_name, "a");
+      FILE *f2 = fopen(libc_name, "wa");
       if (f2 == NULL)
       {
         perror("libc can not open");
