@@ -66,7 +66,8 @@ int main(int argc, char *argv[])
     {
       // 这是一个表达式.需要构造一个wrapper， wrapper_0  wrapper_1
       char wrapper_buf[1024];
-      printf("%ld\n", strlen(line));
+      int len = strlen(line);
+      printf("%d\n", len);
       if (line[strlen(line) - 2] == '\n')
       {
         line[strlen(line) - 2] == '\0';
