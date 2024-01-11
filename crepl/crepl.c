@@ -70,9 +70,9 @@ int main(int argc, char *argv[])
       printf("%d\n", len);
       if (line[strlen(line)] == '\n')
       {
-        line[strlen(line)] == ' ';
+        line[strlen(line)] == '\0';
       }
-
+      printf("%s", line);
       FILE *f2 = fopen(libc_name, "a");
 
       if (f2 == NULL)
