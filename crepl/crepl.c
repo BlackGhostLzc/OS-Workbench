@@ -66,6 +66,7 @@ int main(int argc, char *argv[])
     {
       // 这是一个表达式.需要构造一个wrapper， wrapper_0  wrapper_1
       char wrapper_buf[1024];
+      printf("%s\n", line);
       printf("here\n");
       FILE *f2 = fopen(libc_name, "a");
       if (f2 == NULL)
