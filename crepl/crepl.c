@@ -67,15 +67,15 @@ int main(int argc, char *argv[])
       // 这是一个表达式.需要构造一个wrapper， wrapper_0  wrapper_1
       char wrapper_buf[1024];
       printf("%s\n", line);
-      printf("here\n");
-      FILE *f2 = fopen(libc_name, "wa");
+
+      FILE *f2 = fopen(libc_name, "a");
       if (f2 == NULL)
       {
         perror("libc can not open");
       }
       fprintf(f2, "%s%s%d%s%s%s",
               wrapper_func[0], wrapper_func[1], wrapper_num, wrapper_func[2], line, wrapper_func[3]);
-      printf("here\n");
+
       update_lib();
 
       void *libHandle = dlopen(libso_name, RTLD_LAZY);
