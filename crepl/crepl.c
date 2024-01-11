@@ -36,12 +36,18 @@ void update_lib()
   wait(NULL);
 }
 
+void cleanup()
+{
+  remove(libc_name);
+  remove(libso_name);
+}
+
 int wrapper_num = 0;
 
 int main(int argc, char *argv[])
 {
   static char line[4096];
-
+  atexit(cleanup);
   int (*wrapper)();
 
   while (1)
