@@ -66,9 +66,9 @@ int main(int argc, char *argv[])
     {
       // 这是一个表达式.需要构造一个wrapper， wrapper_0  wrapper_1
       char wrapper_buf[1024];
-      if (line[strlen(line) - 1] == '\n')
+      if (line[strlen(line) - 2] == '\n')
       {
-        line[strlen(line) - 1] == '0';
+        line[strlen(line) - 2] == '\0';
       }
 
       FILE *f2 = fopen(libc_name, "a");
