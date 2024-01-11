@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
     {
       // 是个函数申明
       // int func_name(int a, ...) {....; return x;}
-      FILE *f = fopen(libc_name, 'a');
+      FILE *f = fopen(libc_name, "a");
       fprintf(f, "\n%s\n", line);
       fclose(f);
       printf("Got %zu chars.\n", strlen(line)); // ??
