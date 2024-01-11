@@ -69,13 +69,14 @@ int main(int argc, char *argv[])
       printf("%s\n", line);
 
       FILE *f2 = fopen(libc_name, "a");
+
       if (f2 == NULL)
       {
         perror("libc can not open");
       }
       fprintf(f2, "%s%s%d%s%s%s",
               wrapper_func[0], wrapper_func[1], wrapper_num, wrapper_func[2], line, wrapper_func[3]);
-
+      fflush(f2);
       update_lib();
 
       void *libHandle = dlopen(libso_name, RTLD_LAZY);
