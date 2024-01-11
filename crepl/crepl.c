@@ -23,10 +23,9 @@ char *wrapper_func[] = {
     "() { return ",
     "; }\n",
     NULL,
-}
+};
 
-void
-update_lib()
+void update_lib()
 {
   if (fork() == 0)
   {
