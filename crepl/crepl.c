@@ -8,6 +8,7 @@
 char libc_name[] = "./tmp/lib.c";
 char libso_name[] = "./tmp/lib.so";
 char *gcc_option[] = {
+    "gcc",
     "-shared",
     "-fPIC",
     libc_name,
