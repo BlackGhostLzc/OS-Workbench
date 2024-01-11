@@ -17,7 +17,16 @@ char *gcc_option[] = {
     NULL,
 };
 
-void update_lib()
+char *wrapper_func[] = {
+    "int ",
+    "wrapper_",
+    "() { return ",
+    "; }\n",
+    NULL,
+}
+
+void
+update_lib()
 {
   if (fork() == 0)
   {
@@ -65,7 +74,7 @@ int main(int argc, char *argv[])
         perror("libc can not open");
       }
       fprintf(f, "%s%s%d%s%s%s",
-              "int ", "wrapper_", wrapper_num, "(){ return ", line, "; }\n");
+              wrapper_func[0], wrapper_func[1], wrapper_num, wrapper_func[2], line, wrapper_func[3]);
       printf("here\n");
       update_lib();
 
