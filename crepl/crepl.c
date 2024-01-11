@@ -49,6 +49,7 @@ int main(int argc, char *argv[])
   static char line[4096];
   atexit(cleanup);
   int (*wrapper)();
+  FILE *file = fopen(libc_name, "w");
 
   while (1)
   {
@@ -66,7 +67,7 @@ int main(int argc, char *argv[])
       FILE *f1 = fopen(libc_name, "a");
       fprintf(f1, "\n%s\n", line);
       fclose(f1);
-      printf("Got %zu chars.\n", strlen(line)); // ??
+      printf("Got %zu chars. Loading...\n", strlen(line)); // ??
     }
     else
     {
