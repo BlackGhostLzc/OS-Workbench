@@ -66,21 +66,22 @@ int main(int argc, char *argv[])
     {
       // 这是一个表达式.需要构造一个wrapper， wrapper_0  wrapper_1
       char wrapper_buf[1024];
-      int len = strlen(line);
-      printf("%d\n", len);
-      if (line[strlen(line)] == '\n')
-      {
-        line[strlen(line)] == '\0';
-      }
-      printf("%s", line);
+
       FILE *f2 = fopen(libc_name, "a");
 
       if (f2 == NULL)
       {
         perror("libc can not open");
       }
-      fprintf(f2, "%s%s%d%s%s%s",
-              wrapper_func[0], wrapper_func[1], wrapper_num, wrapper_func[2], line, wrapper_func[3]);
+      size_t line_length = strlen(line);
+      // 如果 line 非空且最后一个字符是换行符，则将长度减一
+      if (line_length > 0 && line[line_length - 1] == '\n')
+      {
+        line_length--;
+      }
+
+      fprintf(f2, "%s%s%d%s%.*s%s", wrapper_func[0], wrapper_func[1], wrapper_num, wrapper_func[2],
+              (int)line_length, line, wrapper_func[3]);
       fflush(f2);
       update_lib();
 
