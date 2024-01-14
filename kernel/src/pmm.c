@@ -6,7 +6,7 @@
 #define MB (1 << 20)
 
 // 这是线段树数组，每一个元素是char类型，占一个字节
-#define HB_ARRAY_SIZE (2 * HB_MAX / HB_MIN + 1)
+#define HB_ARRAY_SIZE (2 * HB_MAX / HB_MIN + 8)
 #define HB_CONT_SIZE (HB_MAX)
 
 /*
