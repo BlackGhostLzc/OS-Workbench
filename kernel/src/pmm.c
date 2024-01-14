@@ -12,7 +12,7 @@ typedef struct heap_block
 void kinit()
 {
   uintptr_t pmsize = ((uintptr_t)heap.end - (uintptr_t)heap.start);
-  printf("Heap size: %" PRIuPTR "\n", pmsize);
+  printf("Heap size: %d\n", pmsize);
 }
 
 static void *kalloc(size_t size)
