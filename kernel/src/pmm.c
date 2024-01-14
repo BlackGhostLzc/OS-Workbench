@@ -15,8 +15,8 @@
 
 static size_t HB_number;     // number of HB
 static void *HB_struct_base; // basic addr of HB head
-static void *HB_array_base;  // basic addr of HB content
-static void *HB_cont_base;
+static void *HB_array_base;  // basic addr of HB array
+static void *HB_cont_base;   // basic addr of HB content
 
 typedef struct heap_block
 {
