@@ -85,6 +85,7 @@ static void kfree(void *ptr)
 static void pmm_init()
 {
   uintptr_t pmsize = ((uintptr_t)heap.end - (uintptr_t)heap.start);
+  printf("%p %p\n", heap.start, (uintptr_t)heap.start);
   printf("Got %d MiB heap: [%p, %p)\n", pmsize >> 20, heap.start, heap.end);
   kinit();
 }
