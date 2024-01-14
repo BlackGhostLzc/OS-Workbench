@@ -25,8 +25,14 @@ typedef struct heap_block
   char stat;
 } heap_block;
 
-void hb_init(struct heap_block *hb, void *start)
+void hb_init(struct heap_block *hb, void *array, void *cont)
 {
+  hb->array = (char *)(array);
+  hb->cont = cont;
+  hb->stat = 0;
+
+  memset(hb->array, 0, HB_ARRAY_SIZE);
+  memset(hb->cont, 0, HB_CONT_SIZE);
 }
 
 void kinit()
@@ -42,6 +48,9 @@ void kinit()
 
   for (int i = 0; i < HB_number; i++)
   {
+    hb_init((heap_block *)(HB_struct_base + i * sizeof(heap_block)),
+            HB_array_base + i * HB_ARRAY_SIZE,
+            HB_cont_base + i * HB_CONT_SIZE);
   }
 }
 
