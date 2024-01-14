@@ -21,6 +21,7 @@ typedef struct heap_block
 
 void kinit()
 {
+  printf("HB_HEAD size : %d\n", HB_HEAD_SIZE);
   uintptr_t pmsize = ((uintptr_t)heap.end - (uintptr_t)heap.start);
   printf("Heap size: %d\n", pmsize);
   HB_number = pmsize / (sizeof(heap_block) + HB_HEAD_SIZE + HB_CONT_SIZE);
