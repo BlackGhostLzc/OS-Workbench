@@ -352,6 +352,7 @@ void pmm_test()
   void *addr_array[1000];
   while (1)
   {
+    printf("CPU #%d\n allocating .....\n", cpu_current());
     for (int i = 0; i < 1000; i++)
     {
       addr_array[i] = pmm->alloc(rand());
@@ -367,10 +368,10 @@ void pmm_test()
       kfree(addr_array[i]);
     }
 
-    // int x = 100000000;
-    // while (x)
-    // {
-    //   x--;
-    // }
+    int x = 100000000;
+    while (x)
+    {
+      x--;
+    }
   }
 }
