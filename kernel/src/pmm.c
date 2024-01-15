@@ -352,12 +352,12 @@ void pmm_test()
   void *addr_array[100];
   while (1)
   {
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 100; i++)
     {
       addr_array[i] = pmm->alloc(rand());
     }
 
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 100; i++)
     {
       printf("%p \t", addr_array[i]);
     }
