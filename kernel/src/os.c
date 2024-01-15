@@ -18,6 +18,11 @@ static void os_run()
     void *addr = pmm->alloc(size);
     printf("%d allocate memory size ", cpu_current(), size);
     printf("at address %p \n", size, addr);
+    int x = 1000000;
+    while (x)
+    {
+      x--;
+    }
   }
   while (1)
     ;
