@@ -197,6 +197,7 @@ int find_hb(int idx, heap_block *hb, int block_size, int size)
 static void *kalloc(size_t size)
 {
   size = conv2pow(size);
+  printf("Allocating %d bytes ", (int)(size));
   if (size >= 16 * MB)
   {
     return NULL;

@@ -12,13 +12,11 @@ static void os_run()
     putch(*s == '*' ? '0' + cpu_current() : *s);
   }
 
+  // testing
   while (1)
   {
     int size = rand() + 23;
     void *addr = pmm->alloc(size);
-    printf("%d allocate memory size\t", cpu_current());
-    printf("%d\t", size);
-    printf("at address %p \n", addr);
     int x = 100000000;
     while (x)
     {
