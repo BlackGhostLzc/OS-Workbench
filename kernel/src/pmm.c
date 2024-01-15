@@ -80,7 +80,7 @@ int lowbit(int x)
 int highbit(int x)
 {
   int ret = x;
-  while (x)
+  while (x - lowbit(x) != 0)
   {
     ret = ret - lowbit(x);
     x = x - lowbit(x);
