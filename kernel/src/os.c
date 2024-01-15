@@ -16,7 +16,7 @@ static void os_run()
   {
     int size = rand() + 23;
     void *addr = pmm->alloc(size);
-    printf("%d allocate memory size ", cpu_current());
+    printf("%d allocate memory size ", cpu_current(), size);
     printf("at address %p \n", size, addr);
   }
   while (1)
