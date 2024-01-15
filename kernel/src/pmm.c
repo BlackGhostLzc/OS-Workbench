@@ -216,6 +216,7 @@ static void *kalloc(size_t size)
       }
     }
   }
+
   else
   {
     for (int i = 0; i < HB_number; i++)
@@ -354,6 +355,11 @@ void pmm_test()
     for (int i = 0; i < 10; i++)
     {
       addr_array[i] = pmm->alloc(rand());
+    }
+
+    for (int i = 0; i < 10; i++)
+    {
+      printf("%p \t", addr_array[i]);
     }
 
     for (int i = 0; i < 10; i++)
