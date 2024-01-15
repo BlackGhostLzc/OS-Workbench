@@ -79,11 +79,13 @@ int lowbit(int x)
 
 int highbit(int x)
 {
-  while (x -= lowbit(x))
+  int ret = x;
+  while (x)
   {
-    // do no thing
+    ret = ret - lowbit(x);
+    x = x - lowbit(x);
   }
-  return x;
+  return ret;
 }
 
 size_t idx2size(int idx)
