@@ -197,7 +197,7 @@ int find_hb(int idx, heap_block *hb, int block_size, int size)
 static void *kalloc(size_t size)
 {
   size = conv2pow(size);
-  printf("Allocating %d bytes \n", (int)(size));
+  // printf("Allocating %d bytes \n", (int)(size));
   if (size >= 16 * MB)
   {
     return NULL;
@@ -320,7 +320,7 @@ static void kfree(void *ptr)
 
     assert(hb->array[max_idx] == 1);
     hb->array[max_idx] = 0;
-    printf("Free memory size is %d\n", idx2size(max_idx));
+    // printf("Free memory size is %d\n", idx2size(max_idx));
 
     // 一直向上更新 array 数组
     int x = max_idx;
