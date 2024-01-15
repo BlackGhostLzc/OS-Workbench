@@ -124,33 +124,21 @@ void *idx2addr(heap_block *hb, int idx)
    2： 部分被使用，还有剩余空间
    3： 全部被使用，是多次分配的结果
 */
-void update_array(heap_block *hb, int parent, int child)
+void update_array(heap_block *hb, int parent)
 {
-  int brother;
-  if (child % 2)
-  {
-    brother = child - 1;
-  }
-  else
-  {
-    brother = child + 1;
-  }
+  size_t le = parent << 1, ri = le + 1;
 
-  // parent 必须要有子节点
-  if (idx2size(parent) == HB_MIN)
-  {
-    return;
-  }
-
-  if ((hb->array[child] == 1 || hb->array[child] == 3) &&
-      (hb->array[brother] == 1 || hb->array[brother] == 3))
-  {
-    hb->array[parent] = 3;
-  }
-  else if (hb->array[child] == 0 && hb->array[brother] == 0)
+  // if both free
+  if (hb->array[le] == 0 && hb->array[ri] == 0)
   {
     hb->array[parent] = 0;
   }
+  // if both full
+  else if (hb->array[le] & 1 && hb->array[ri] & 1)
+  {
+    hb->array[parent] = 3;
+  }
+  // if both not full
   else
   {
     hb->array[parent] = 2;
@@ -193,13 +181,13 @@ int find_hb(int idx, heap_block *hb, int block_size, int size)
   ret = find_hb(l, hb, block_size / 2, size);
   if (ret > 0)
   {
-    update_array(hb, idx, l);
+    update_array(hb, idx);
     return ret;
   }
   ret = find_hb(r, hb, block_size / 2, size);
   if (ret > 0)
   {
-    update_array(hb, idx, r);
+    update_array(hb, idx);
     return ret;
   }
 
@@ -276,6 +264,66 @@ static void *kalloc(size_t size)
 
 static void kfree(void *ptr)
 {
+  // 如何根据 ptr 地址找到 Idx ?
+  // 还有如果是连续分配的，那先要找 heap_block
+  assert((uintptr_t)(ptr) % HB_MIN);
+  uintptr_t offset = (uintptr_t)(ptr) - (uintptr_t)(HB_cont_base);
+  int id = (offset + 1) / HB_MAX; // [0, HB_MAX - 1]   [HB_MAX, 2*HB_MAX - 1]
+  heap_block *hb = (heap_block *)(HB_struct_base + id * sizeof(heap_block));
+  assert((uintptr_t)(ptr) >= (uintptr_t)(hb->cont) && (uintptr_t)(ptr) < (uintptr_t)(hb->cont + HB_MAX));
+
+  if (hb->stat != 0)
+  {
+    // 连续分配
+    assert(ptr != hb->cont);
+    while (1)
+    {
+      hb->array[1] = 0;
+      hb->stat = 0;
+      if (hb->stat == 3)
+      {
+        break;
+      }
+      hb++;
+      assert((uintptr_t)(hb) < (uintptr_t)(HB_array_base));
+    }
+  }
+  else
+  {
+    // 不是连续分配
+    // 思路：找到该块中array起始地址为ptr的 idx集合，有且仅有一个为 1 ,也可以知道分配块的大小
+    uintptr_t off = (uintptr_t)(ptr) - (uintptr_t)(hb->cont);
+
+    // [1], [2 , 3]  ......... [HB_MAX/HB_MIN, HB_MAX/HB_MIN+1 ............ 2*HB_MAX/HB_MIN - 1]
+    // HB_MAX = 2<<12, max_idx是array中起始地址为ptr的最大索引
+    int max_idx = (1 << 12) + off / HB_MIN;
+
+    // 自底向上找，知道找到第一个 array[x] 为 1 的索引,且该节点必须是父亲的左儿子,左儿子是偶数
+    while (hb->array[max_idx] != 1)
+    {
+      if (max_idx % 2)
+      {
+        printf("Not found\n");
+        break;
+      }
+      else
+      {
+        max_idx = max_idx / 2;
+      }
+    }
+
+    assert(hb->array[max_idx] == 1);
+    hb->array[max_idx] = 0;
+    printf("Free memory size is %d\n", idx2size(max_idx));
+
+    // 一直向上更新 array 数组
+    int x = max_idx;
+    while (x)
+    {
+      update_array(hb, x);
+      x /= 2;
+    }
+  }
 }
 
 static void pmm_init()

@@ -24,6 +24,8 @@ static void os_run()
     {
       x--;
     }
+
+    pmm->free(addr);
   }
 
   while (1)
