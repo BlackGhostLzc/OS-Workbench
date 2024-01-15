@@ -349,7 +349,7 @@ MODULE_DEF(pmm) = {
 // test 函数
 void pmm_test()
 {
-  void *addr_array[10];
+  void *addr_array[100];
   while (1)
   {
     for (int i = 0; i < 10; i++)
@@ -357,20 +357,20 @@ void pmm_test()
       addr_array[i] = pmm->alloc(rand());
     }
 
-    for (int i = 0; i < 10; i++)
-    {
-      printf("%p \t", addr_array[i]);
-    }
+    // for (int i = 0; i < 10; i++)
+    // {
+    //   printf("%p \t", addr_array[i]);
+    // }
 
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 100; i++)
     {
       kfree(addr_array[i]);
     }
 
-    int x = 100000000;
-    while (x)
-    {
-      x--;
-    }
+    // int x = 100000000;
+    // while (x)
+    // {
+    //   x--;
+    // }
   }
 }
