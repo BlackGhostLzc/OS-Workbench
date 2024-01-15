@@ -11,7 +11,7 @@ static void os_run()
   {
     putch(*s == '*' ? '0' + cpu_current() : *s);
   }
-  /*
+
   while (1)
   {
     int size = rand() + 23;
@@ -25,7 +25,7 @@ static void os_run()
       x--;
     }
   }
-  */
+
   while (1)
     ;
 }
