@@ -69,6 +69,7 @@ size_t conv2pow(size_t size)
   {
     res *= 2;
   }
+  printf("%d\n", res);
   return res;
 }
 
