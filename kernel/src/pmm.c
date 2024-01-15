@@ -358,7 +358,7 @@ void pmm_test()
       addr_array[i] = pmm->alloc(rand());
     }
 
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < 10; i++)
     {
       printf("%p \t", addr_array[i]);
     }
