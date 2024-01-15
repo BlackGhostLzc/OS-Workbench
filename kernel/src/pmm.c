@@ -265,6 +265,10 @@ static void *kalloc(size_t size)
 
 static void kfree(void *ptr)
 {
+  if (ptr == NULL)
+  {
+    return;
+  }
   // 如何根据 ptr 地址找到 Idx ?
   // 还有如果是连续分配的，那先要找 heap_block
   assert((uintptr_t)(ptr) % HB_MIN == 0);
@@ -340,3 +344,27 @@ MODULE_DEF(pmm) = {
     .alloc = kalloc,
     .free = kfree,
 };
+
+// test 函数
+void pmm_test()
+{
+  void *addr_array[10];
+  while (1)
+  {
+    for (int i = 0; i < 10; i++)
+    {
+      addr_array[i] = pmm->alloc(rand());
+    }
+
+    for (int i = 0; i < 10; i++)
+    {
+      kfree(addr_array[i]);
+    }
+
+    int x = 100000000;
+    while (x)
+    {
+      x--;
+    }
+  }
+}
