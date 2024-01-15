@@ -266,7 +266,7 @@ static void kfree(void *ptr)
 {
   // 如何根据 ptr 地址找到 Idx ?
   // 还有如果是连续分配的，那先要找 heap_block
-  assert((uintptr_t)(ptr) % HB_MIN);
+  assert((uintptr_t)(ptr) % HB_MIN == 0);
   uintptr_t offset = (uintptr_t)(ptr) - (uintptr_t)(HB_cont_base);
   int id = (offset + 1) / HB_MAX; // [0, HB_MAX - 1]   [HB_MAX, 2*HB_MAX - 1]
   heap_block *hb = (heap_block *)(HB_struct_base + id * sizeof(heap_block));
