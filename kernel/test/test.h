@@ -3,4 +3,6 @@
 void pmm_test()
 {
     printf("Testing \n");
+    while (1)
+        ;
 }
