@@ -5,7 +5,7 @@
 int main(int argc, char *argv[])
 {
   char *exec_argv[] = {
-      "strace",
+      "/bin/strace",
       "ls",
       NULL,
   };
