@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
       NULL,
   };
   char *exec_envp[] = {
-      "PATH=..."
+      // "PATH=..."
       "PATH=/bin",
       NULL,
   };
