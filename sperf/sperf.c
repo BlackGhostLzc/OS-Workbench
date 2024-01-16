@@ -10,11 +10,13 @@ extern char **environ;
 int main()
 {
   // 遍历环境变量列表
-  for (char **env = environ; *env != NULL; env++)
-  {
-    // 打印每个环境变量
-    printf("%s\n", *env);
-  }
+  // for (char **env = environ; *env != NULL; env++)
+  // {
+  //   // 打印每个环境变量
+  //   printf("%s\n", *env);
+  // }
 
+  char *path = getenv("PATH");
+  printf("%s\n", path);
   return 0;
 }
