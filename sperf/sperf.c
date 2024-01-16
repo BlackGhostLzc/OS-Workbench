@@ -6,10 +6,11 @@ int main(int argc, char *argv[])
 {
   char *exec_argv[] = {
       "strace",
-      "/bin/ls",
+      "ls",
       NULL,
   };
   char *exec_envp[] = {
+      "PATH=..."
       "PATH=/bin",
       NULL,
   };
