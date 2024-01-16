@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
       "PATH=/bin",
       NULL,
   };
-  execve("/usr/bin/strace", exec_argv, NULL);
+  execve("/usr/bin/strace", exec_argv, exec_envp);
   // execve("/bin/strace",     exec_argv, exec_envp);
   // execve("/usr/bin/strace", exec_argv, exec_envp);
   perror(argv[0]);
