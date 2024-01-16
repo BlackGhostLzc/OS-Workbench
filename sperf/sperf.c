@@ -2,20 +2,19 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int main(int argc, char *argv[])
+#include <stdio.h>
+
+// 声明外部变量 environ
+extern char **environ;
+
+int main()
 {
-  char *exec_argv[] = {
-      "strace",
-      "ls",
-      NULL,
-  };
-  char *exec_envp[] = {
-      "PATH=/bin",
-      NULL,
-  };
-  execve("strace", exec_argv, exec_envp);
-  execve("/bin/strace", exec_argv, exec_envp);
-  execve("/usr/bin/strace", exec_argv, exec_envp);
-  perror(argv[0]);
-  exit(EXIT_FAILURE);
+  // 遍历环境变量列表
+  for (char **env = environ; *env != NULL; env++)
+  {
+    // 打印每个环境变量
+    printf("%s\n", *env);
+  }
+
+  return 0;
 }
