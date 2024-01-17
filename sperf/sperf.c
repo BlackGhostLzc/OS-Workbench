@@ -75,6 +75,8 @@ void parent()
     {
       printf("%s", line);
       line_idx = 0;
+      flag = 0;
+      memset(line, 0, sizeof(line));
 
       goto line_read;
     }
