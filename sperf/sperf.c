@@ -23,7 +23,7 @@ void init_childargv(int argc, char *argv[])
     child_argv[i + 3] = argv[i];
   }
 
-  child_argv[argc + 4] = "NULL";
+  // child_argv[argc + 4] = "NULL";
 }
 
 void child()
@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
 {
   printf("argc: %d\n", argc);
   fflush(stdout);
-  child_argv = (char **)malloc((argc + 4) * sizeof(char *));
+  child_argv = (char **)malloc((argc + 3) * sizeof(char *));
   init_childargv(argc, argv);
 
   if (pipe(pipefd) < 0)
