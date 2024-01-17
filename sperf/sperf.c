@@ -8,14 +8,12 @@ char file_path[64];
 
 int pipefd[2];
 
-char *STRACE_SHOW_TIME = "-T", *STRACE_OUTPUT = "-o";
-
 // /bin/strace -o file_path -T ls -a
 void init_childargv(int argc, char *argv[])
 {
-  child_argv[0] = "/usr/bin/strace";
-  child_argv[1] = STRACE_OUTPUT;
-  child_argv[3] = STRACE_SHOW_TIME;
+  child_argv[0] = "/bin/strace";
+  child_argv[1] = "-o";
+  child_argv[3] = "-T";
 
   // child_argv[4] = argv[1]    child_argv[5] = argv[2]
   for (int i = 1; i < argc; i++)
@@ -39,6 +37,10 @@ void child()
   {
     // 为 child_argv[4] 加上路径前缀
     char *tmp[] = {"/bin/trace", "-o", "trace.txt", "-T", "pstree"};
+    for (int i = 0; i < 5; i++)
+    {
+      printf("%s\n", child_argv[i]);
+    }
     execve("/bin/strace", child_argv, __environ);
     printf("hh\n");
   }
