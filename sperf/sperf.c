@@ -38,7 +38,7 @@ void child()
   child_argv[2] = file_path;
 
   // 为 child_argv[4] 加上路径前缀
-  char *tmp[] = {"/bin/trace", "-o", "trace.txt", "-T", "pwd"};
+  char *tmp[] = {"/bin/trace", "-o", "trace.txt", "-T", "/bin/pwd"};
 
   int i = 0;
   while (child_argv[i] != NULL)
@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
 {
   printf("argc: %d\n", argc);
   // fflush(stdout);
-  child_argv = (char **)malloc((argc + 3) * sizeof(char *));
+  child_argv = (char **)malloc((argc + 4) * sizeof(char *));
   init_childargv(argc, argv);
 
   if (pipe(pipefd) < 0)
