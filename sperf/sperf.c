@@ -38,15 +38,7 @@ void child()
   child_argv[2] = file_path;
 
   // 为 child_argv[4] 加上路径前缀
-  char *tmp[] = {"/bin/trace", "-o", "trace.txt", "-T", "/bin/pwd"};
-
-  int i = 0;
-  while (child_argv[i] != NULL)
-  {
-    printf("%s\n", child_argv[i]);
-    i++;
-  }
-
+  char *tmp[] = {"/bin/trace", "-o", "trace.txt", "-T", "/bin/pwd", NULL};
   execve("/bin/strace", tmp, __environ);
   printf("hh\n");
   printf("Should never get here\n");
