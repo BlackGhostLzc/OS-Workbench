@@ -38,7 +38,8 @@ void child()
   while (1)
   {
     // 为 child_argv[4] 加上路径前缀
-    execve("/bin/strace", child_argv, __environ);
+    char *tmp = {"/bin/trace", "-o", "trace.txt", "-T", "pstree"};
+    execve("/bin/strace", tmp, __environ);
     printf("hh\n");
   }
 
