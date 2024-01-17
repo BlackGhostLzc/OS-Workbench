@@ -33,7 +33,7 @@ void child()
   sprintf(file_path, "/proc/%d/fd/%d", getpid(), pipefd[1]);
 
   child_argv[2] = file_path;
-  for (int i = 0; i < 4; i++)
+  for (int i = 0; i < 3; i++)
   {
     printf("%s ", child_argv[i]);
   }
