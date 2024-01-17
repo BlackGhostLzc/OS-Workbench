@@ -38,10 +38,7 @@ void child()
   printf("here\n");
 
   child_argv[2] = file_path;
-  for (int i = 0; i < 1; i++)
-  {
-    printf("%s ", child_argv[i]);
-  }
+  printf("%s\n", child_argv[2]);
 
   execve("/bin/strace", child_argv, __environ);
 
