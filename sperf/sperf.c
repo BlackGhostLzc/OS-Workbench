@@ -60,7 +60,7 @@ void parent()
 // ./sperf ls -a
 int main(int argc, char *argv[])
 {
-  // printf("argc: %d\n", argc);
+  printf("argc: %d\n", argc);
   fflush(stdout);
   child_argv = (char **)malloc((argc + 4) * sizeof(char *));
   init_childargv(argc, argv);
