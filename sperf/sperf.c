@@ -34,11 +34,13 @@ void child()
   printf("here\n");
 
   child_argv[2] = file_path;
-  for (int i = 0; i < 5; i++)
+
+  while (1)
   {
-    printf("%s \n", child_argv[i]);
+    // 为 child_argv[4] 加上路径前缀
+    execve("/bin/strace", child_argv, __environ);
+    printf("hh")
   }
-  execve("/bin/strace", child_argv, __environ);
 
   printf("Should never get here\n");
 }
