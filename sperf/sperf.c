@@ -45,7 +45,7 @@ void child()
   printf("%s \n", child_argv[2]);
   printf("%s \n", child_argv[3]);
   printf("%s \n", child_argv[4]);
-
+  printf("%s \n", child_argv[5]);
   execve("/bin/strace", child_argv, __environ);
 
   printf("Should never get here\n");
