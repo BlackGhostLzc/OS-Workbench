@@ -58,7 +58,7 @@ void parent()
 
   int flag = 0;
 
-  while (byte_read = read(pipefd[0], buffer, MAX_LEN))
+  while (byte_read = read(pipefd[0], buffer, MAX_LEN) > 0)
   {
   line_read:
     while (buffer_idx < byte_read)
