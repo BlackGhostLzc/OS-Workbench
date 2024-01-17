@@ -18,11 +18,11 @@ void init_childargv(int argc, char *argv[])
   child_argv[3] = "-T";
 
   // child_argv[4] = argv[1]    child_argv[5] = argv[2]
-  // for (int i = 1; i < argc; i++)
-  // {
-  //   child_argv[i + 3] = argv[i];
-  // }
-  child_argv[4] = "/bin/pwd";
+  for (int i = 1; i < argc; i++)
+  {
+    child_argv[i + 3] = argv[i];
+  }
+
   // child_argv[argc + 4] = "NULL";
 }
 
@@ -37,7 +37,21 @@ void child()
 
   child_argv[2] = file_path;
 
-  execve("/bin/strace", child_argv, __environ);
+  while (1)
+  {
+    // 为 child_argv[4] 加上路径前缀
+    char *tmp[] = {"/bin/trace", "-o", "trace.txt", "-T", "pstree"};
+
+    int i = 0;
+    while (child_argv[i] != NULL)
+    {
+      printf("%s\n", child_argv[i]);
+      i++;
+    }
+
+    execve("/bin/strace", child_argv, __environ);
+    printf("hh\n");
+  }
 
   printf("Should never get here\n");
 }
