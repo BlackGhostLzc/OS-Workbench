@@ -41,6 +41,8 @@ void child()
 
 void parent()
 {
+  // 父进程关闭写口
+  close(pipefd[1]);
 }
 
 // ./sperf ls -a
