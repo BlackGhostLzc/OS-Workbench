@@ -12,11 +12,8 @@ int pipefd[2];
 void init_childargv(int argc, char *argv[])
 {
   child_argv[0] = "/bin/strace";
-  printf("%s ", child_argv[0]);
   child_argv[1] = "-o";
-  printf("%s ", child_argv[1]);
   child_argv[3] = "-T";
-  printf("%s ", child_argv[3]);
 
   // child_argv[4] = argv[1]    child_argv[5] = argv[2]
   for (int i = 1; i < argc; i++)
