@@ -45,7 +45,7 @@ void child()
     int i = 0;
     while (child_argv[i] != NULL)
     {
-      printf("%s\n", child_argv[i]);
+      printf("%s\n hh", child_argv[i]);
       i++;
     }
 
