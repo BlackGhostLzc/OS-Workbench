@@ -9,6 +9,8 @@ char file_path[64];
 int pipefd[2];
 
 // /bin/strace -o file_path -T ls -a
+// ./sperf pstree
+// strace -o file_path -T pstree
 void init_childargv(int argc, char *argv[])
 {
   child_argv[0] = "/bin/strace";
@@ -59,7 +61,7 @@ int main(int argc, char *argv[])
 {
   // printf("argc: %d\n", argc);
   fflush(stdout);
-  child_argv = (char **)malloc((argc + 4) * sizeof(char *));
+  child_argv = (char **)malloc((argc + 3) * sizeof(char *));
   init_childargv(argc, argv);
 
   if (pipe(pipefd) < 0)
