@@ -52,7 +52,7 @@ void parent()
   char buffer[MAX_LEN];
   char line[1024];
 
-  int byte_read = 0;
+  size_t byte_read = 0;
   int buffer_idx = 0;
   int line_idx = 0;
 
