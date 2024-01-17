@@ -43,7 +43,7 @@ void child()
     {
       printf("%s\n", child_argv[i]);
     }
-    child_argv[4] = "pstree";
+    // child_argv[4] = "pstree";
     execve("/bin/strace", child_argv, __environ);
     printf("hh\n");
   }
