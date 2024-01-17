@@ -45,8 +45,6 @@ void child()
   printf("%s \n", child_argv[2]);
   printf("%s \n", child_argv[3]);
   printf("%s \n", child_argv[4]);
-  printf("%s \n", child_argv[5]);
-  printf("%s \n", child_argv[6]);
   execve("/bin/strace", child_argv, __environ);
 
   printf("Should never get here\n");
@@ -62,7 +60,7 @@ void parent()
 int main(int argc, char *argv[])
 {
   // printf("argc: %d\n", argc);
-
+  fflush(stdout);
   child_argv = (char **)malloc((argc + 4) * sizeof(char *));
   init_childargv(argc, argv);
 
