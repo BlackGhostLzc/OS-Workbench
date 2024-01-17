@@ -33,6 +33,7 @@ void child()
   sprintf(file_path, "/proc/%d/fd/%d", getpid(), pipefd[1]);
 
   child_argv[2] = file_path;
+  printf("%s\n", file_path);
 
   execve("/bin/strace", child_argv, __environ);
 
