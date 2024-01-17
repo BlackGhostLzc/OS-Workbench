@@ -10,7 +10,7 @@ int pipefd[2];
 
 // /bin/strace -o file_path -T ls -a
 // ./sperf pstree
-// strace -o file_path -T pstree
+// strace -o file_path -T pstree NULL
 void init_childargv(int argc, char *argv[])
 {
   child_argv[0] = "/bin/strace";
@@ -22,8 +22,6 @@ void init_childargv(int argc, char *argv[])
   {
     child_argv[i + 3] = argv[i];
   }
-
-  // child_argv[argc + 4] = "NULL";
 }
 
 void child()
@@ -38,8 +36,8 @@ void child()
   child_argv[2] = file_path;
 
   // 为 child_argv[4] 加上路径前缀
-  char *tmp[] = {"/bin/trace", "-o", "trace.txt", "-T", "pwd", NULL};
-  execve("/bin/strace", tmp, __environ);
+
+  execve("/bin/strace", child_argv, __environ);
   printf("hh\n");
   printf("Should never get here\n");
 }
@@ -56,6 +54,8 @@ int main(int argc, char *argv[])
   printf("argc: %d\n", argc);
   // fflush(stdout);
   child_argv = (char **)malloc((argc + 4) * sizeof(char *));
+  child_argv[argc + 4] = NULL;
+
   init_childargv(argc, argv);
 
   if (pipe(pipefd) < 0)
