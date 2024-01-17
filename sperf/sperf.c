@@ -6,6 +6,8 @@ extern char **__environ;
 char *file_name;
 char **child_argv;
 
+int pipefd[2];
+
 void init_childargv()
 {
   child_argv[0] = "/bin/strace";
@@ -32,8 +34,6 @@ void child()
 void parent()
 {
 }
-
-int pipefd[2];
 
 // ./sperf ls -a
 int main(int argc, char *argv[])
