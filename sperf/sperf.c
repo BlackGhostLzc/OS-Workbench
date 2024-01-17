@@ -13,7 +13,7 @@ char *STRACE_SHOW_TIME = "-T", *STRACE_OUTPUT = "-o";
 // /bin/strace -o file_path -T ls -a
 void init_childargv(int argc, char *argv[])
 {
-  child_argv[0] = "/bin/strace";
+  child_argv[0] = "/usr/bin/strace";
   child_argv[1] = STRACE_OUTPUT;
   child_argv[3] = STRACE_SHOW_TIME;
 
