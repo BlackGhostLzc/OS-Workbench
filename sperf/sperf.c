@@ -3,7 +3,6 @@
 #include <unistd.h>
 
 extern char **__environ;
-char *file_name;
 char **child_argv;
 
 int pipefd[2];
@@ -60,10 +59,13 @@ int main(int argc, char *argv[])
     printf("Error when initializing pipe\n");
     exit(0);
   }
+
   pid_t pid = fork();
   if (pid == 0)
   {
     child();
+    while (1)
+      ;
   }
   else
   {
