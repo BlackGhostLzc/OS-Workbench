@@ -15,9 +15,18 @@ void init_childargv()
 
 void child()
 {
+  // 子进程首先关闭读口
+  close(pipefd[0]);
+
   // strace -o filename -T ls -a
   init_childargv();
+  char file_path[64];
+  // /proc/pid/fd/ 目录下是进程所打开的全部文件描述符，这是个符号链接
+  sprintf(file_path, "/proc/%d/fd/%d", getpid(), pipefd[1]);
+  child_argv[2] = file_path;
+  printf("here\n");
   execve("/bin/strace", child_argv, __environ);
+  printf("Should never get here\n");
 }
 
 void parent()
