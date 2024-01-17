@@ -20,6 +20,10 @@ void child()
   execve("/bin/strace", child_argv, __environ);
 }
 
+void parent()
+{
+}
+
 int pipefd[2];
 
 // ./sperf ls -a
