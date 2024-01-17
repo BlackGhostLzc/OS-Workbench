@@ -16,7 +16,7 @@ void init_childargv(int argc, char *argv[])
   child_argv[3] = "-T";
 
   // child_argv[4] = argv[1]    child_argv[5] = argv[2]
-  for (int i = 1; i < argc; i++)
+  for (int i = 1; i <= argc; i++)
   {
     child_argv[i + 3] = argv[i];
   }
