@@ -39,7 +39,7 @@ void child()
   {
     // 为 child_argv[4] 加上路径前缀
     execve("/bin/strace", child_argv, __environ);
-    printf("hh")
+    printf("hh\n");
   }
 
   printf("Should never get here\n");
