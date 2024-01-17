@@ -39,7 +39,7 @@ void child()
   {
     // 为 child_argv[4] 加上路径前缀
     char *tmp[] = {"/bin/trace", "-o", "trace.txt", "-T", "pstree"};
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 6; i++)
     {
       printf("%s\n", child_argv[i]);
     }
