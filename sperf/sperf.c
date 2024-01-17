@@ -41,12 +41,14 @@ void child()
   {
     // 为 child_argv[4] 加上路径前缀
     char *tmp[] = {"/bin/trace", "-o", "trace.txt", "-T", "pstree"};
-    for (int i = 0; i < 6; i++)
+
+    int i = 0;
+    while (child_argv[i] != NULL)
     {
       printf("%s\n", child_argv[i]);
+      i++;
     }
-    printf("%s\n", NULL);
-    // child_argv[4] = "pstree";
+
     execve("/bin/strace", child_argv, __environ);
     printf("hh\n");
   }
