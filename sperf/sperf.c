@@ -38,13 +38,7 @@ void child()
   printf("here\n");
 
   child_argv[2] = file_path;
-  printf("%s\n", child_argv[2]);
 
-  printf("%s \n", child_argv[0]);
-  printf("%s \n", child_argv[1]);
-  printf("%s \n", child_argv[2]);
-  printf("%s \n", child_argv[3]);
-  printf("%s \n", child_argv[4]);
   execve("/bin/strace", child_argv, __environ);
 
   printf("Should never get here\n");
