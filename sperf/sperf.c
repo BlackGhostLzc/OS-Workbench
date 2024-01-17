@@ -33,7 +33,11 @@ void child()
   sprintf(file_path, "/proc/%d/fd/%d", getpid(), pipefd[1]);
 
   child_argv[2] = file_path;
-  printf("here\n");
+  for (int i = 0; i < 5; i++)
+  {
+    printf("%s\t", child_argv[i]);
+  }
+
   execve("/bin/strace", child_argv, __environ);
 
   printf("Should never get here\n");
