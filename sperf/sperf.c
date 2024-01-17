@@ -45,6 +45,46 @@ void parent()
 {
   // 父进程关闭写口
   close(pipefd[1]);
+
+  // 不断读取 strace 的输出
+#define MAX_LEN 4096
+
+  char buffer[MAX_LEN];
+  char line[1024];
+
+  int byte_read = 0;
+  int buffer_idx = 0;
+  int line_idx = 0;
+
+  int flag = 0;
+
+  while (byte_read = read(pipefd[0], buffer, MAX_LEN))
+  {
+  line_read:
+    while (buffer_idx < byte_read)
+    {
+      line[line_idx++] = buffer[buffer_idx++];
+      if (line[line_idx - 1] == '\n')
+      {
+        flag = 1;
+        break;
+      }
+    }
+
+    if (flag)
+    {
+      printf("%s", line);
+      line_idx = 0;
+
+      goto line_read;
+    }
+    else
+    {
+      // 接着读取
+      buffer_idx = 0;
+      continue;
+    }
+  }
 }
 
 // ./sperf ls -a
