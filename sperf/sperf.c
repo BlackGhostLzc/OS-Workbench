@@ -31,14 +31,13 @@ void child()
 
   // strace -o filename -T ls -a
   // /proc/pid/fd/ 目录下是进程所打开的全部文件描述符，这是个符号链接
+
+  // 管道的大小不是无限大的，而是一个缓冲区，缓冲区满了就不能再写了。
   sprintf(file_path, "/proc/%d/fd/%d", getpid(), pipefd[1]);
 
   child_argv[2] = file_path;
 
-  // 为 child_argv[4] 加上路径前缀
-
   execve("/bin/strace", child_argv, __environ);
-  printf("hh\n");
   printf("Should never get here\n");
 }
 
@@ -51,8 +50,8 @@ void parent()
 // ./sperf ls -a
 int main(int argc, char *argv[])
 {
-  printf("argc: %d\n", argc);
-  // fflush(stdout);
+
+  fflush(stdout);
   child_argv = (char **)malloc((argc + 4) * sizeof(char *));
   child_argv[argc + 4] = NULL;
 
