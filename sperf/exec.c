@@ -2,10 +2,15 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-extern char **__environ;
-
-int main()
+int main(int argc, char *argv[])
 {
-    char *child_argv[] = {"/bin/strace", "-o", "trace.txt", "-T", "pstree", NULL};
-    execve("/bin/strace", child_argv, __environ);
+    pid_t pid = fork();
+    if (pid == 0)
+    {
+    }
+    else
+    {
+        while (1)
+            ;
+    }
 }
