@@ -8,12 +8,14 @@ char file_path[64];
 
 int pipefd[2];
 
+char *STRACE_SHOW_TIME = "-T", *STRACE_OUTPUT = "-o";
+
 // /bin/strace -o file_path -T ls -a
 void init_childargv(int argc, char *argv[])
 {
   child_argv[0] = "/bin/strace";
-  child_argv[1] = "-o";
-  child_argv[3] = "-T";
+  child_argv[1] = STRACE_OUTPUT;
+  child_argv[3] = STRACE_SHOW_TIME;
 
   // child_argv[4] = argv[1]    child_argv[5] = argv[2]
   for (int i = 1; i < argc; i++)
@@ -30,8 +32,6 @@ void child()
   // strace -o filename -T ls -a
   // /proc/pid/fd/ 目录下是进程所打开的全部文件描述符，这是个符号链接
   sprintf(file_path, "/proc/%d/fd/%d", getpid(), pipefd[1]);
-
-  printf("here\n");
 
   child_argv[2] = file_path;
 
