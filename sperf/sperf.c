@@ -4,6 +4,7 @@
 
 extern char **__environ;
 char **child_argv;
+char file_path[64];
 
 int pipefd[2];
 
@@ -27,7 +28,6 @@ void child()
   close(pipefd[0]);
 
   // strace -o filename -T ls -a
-  char file_path[64];
   // /proc/pid/fd/ 目录下是进程所打开的全部文件描述符，这是个符号链接
   sprintf(file_path, "/proc/%d/fd/%d", getpid(), pipefd[1]);
 
@@ -39,7 +39,7 @@ void child()
   {
     // 为 child_argv[4] 加上路径前缀
     char *tmp[] = {"/bin/trace", "-o", "trace.txt", "-T", "pstree"};
-    execve("/bin/strace", tmp, __environ);
+    execve("/bin/strace", child_argv, __environ);
     printf("hh\n");
   }
 
