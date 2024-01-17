@@ -9,13 +9,17 @@ char **child_argv;
 int pipefd[2];
 
 // /bin/strace -o file_path -T ls -a
-void init_childargv(char *argv[])
+void init_childargv(int argc, char *argv[])
 {
   child_argv[0] = "/bin/strace";
   child_argv[1] = "-o";
   child_argv[3] = "-T";
 
   // child_argv[4] = argv[1]    child_argv[5] = argv[2]
+  for (int i = 1; i < argc; i++)
+  {
+    child_argv[i + 3] = argv[i];
+  }
 }
 
 void child()
@@ -31,6 +35,7 @@ void child()
   child_argv[2] = file_path;
   printf("here\n");
   execve("/bin/strace", child_argv, __environ);
+
   printf("Should never get here\n");
 }
 
@@ -41,10 +46,10 @@ void parent()
 // ./sperf ls -a
 int main(int argc, char *argv[])
 {
-  printf("argc: %d\n", argc);
+  // printf("argc: %d\n", argc);
 
-  child_argv = (char **)malloc((argc + 3) * sizeof(char *));
-  init_childargv(argv);
+  child_argv = (char **)malloc((argc + 4) * sizeof(char *));
+  init_childargv(argc, argv);
 
   if (pipe(pipefd) < 0)
   {
