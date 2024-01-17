@@ -32,6 +32,8 @@ void child()
   // /proc/pid/fd/ 目录下是进程所打开的全部文件描述符，这是个符号链接
   sprintf(file_path, "/proc/%d/fd/%d", getpid(), pipefd[1]);
 
+  printf("here\n");
+
   child_argv[2] = file_path;
   for (int i = 0; i < 3; i++)
   {
