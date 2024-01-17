@@ -66,7 +66,7 @@ void parent()
 int main(int argc, char *argv[])
 {
   printf("argc: %d\n", argc);
-  fflush(stdout);
+  // fflush(stdout);
   child_argv = (char **)malloc((argc + 3) * sizeof(char *));
   init_childargv(argc, argv);
 
