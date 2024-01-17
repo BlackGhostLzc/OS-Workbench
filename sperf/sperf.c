@@ -22,7 +22,7 @@ void init_childargv(int argc, char *argv[])
   // {
   //   child_argv[i + 3] = argv[i];
   // }
-  child_argv[4] = "pwd";
+  child_argv[4] = "/bin/pwd";
   // child_argv[argc + 4] = "NULL";
 }
 
