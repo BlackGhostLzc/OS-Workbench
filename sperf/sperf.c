@@ -260,6 +260,7 @@ void display()
     syscall_info_show_move_right(SYSCALL_INFO_WINDOW_WIDTH - rest_width);
 
     double percent = sys_info[i].time / total_time;
+
     if (i % 2 == 0)
     {
       int width = percent * rest_width;
@@ -291,6 +292,33 @@ void display()
     }
     else
     {
+      int height = percent * rest_height;
+      for (int h = 0; h < rest_height; h++)
+      {
+        if (h == rest_height / 2)
+        {
+          syscall_info_show(i, sys_info[i].name);
+          if (strlen(sys_info[i].name) < rest_width)
+          {
+            for (int t = 0; t < rest_width - strlen(sys_info[i].name); t++)
+            {
+              syscall_info_show(i, " ");
+            }
+          }
+
+          syscall_info_show_move_down(1);
+          syscall_info_show_move_left(rest_width);
+          continue;
+        }
+        for (int w = 0; w < rest_width; w++)
+        {
+          syscall_info_show(i, " ");
+        }
+        syscall_info_show_move_down(1);
+        syscall_info_show_move_left(rest_width);
+      }
+
+      rest_height = rest_height - height;
     }
   }
 }
