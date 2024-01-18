@@ -309,23 +309,32 @@ void display()
       int height = percent * rest_height;
       for (int h = 0; h < height; h++)
       {
-        /*
-        if (h == rest_height / 2)
+
+        if (h == height / 2)
         {
-          syscall_info_show(i, sys_info[i].name);
-          if (strlen(sys_info[i].name) < rest_width)
+          if (rest_width >= strlen(buf))
           {
-            for (int t = 0; t < rest_width - strlen(sys_info[i].name); t++)
+            for (int k = 0; k < (rest_width - strlen(buf)) / 2; k++)
             {
               syscall_info_show(i, " ");
             }
+            syscall_info_show(i, buf);
+            for (int k = 0; k < rest_width - (rest_width - strlen(buf)) / 2 - strlen(buf); k++)
+            {
+              syscall_info_show(i, " ");
+            }
+            syscall_info_show_move_down(1);
+            syscall_info_show_move_left(rest_width);
+            continue;
           }
-
-          syscall_info_show_move_down(1);
-          syscall_info_show_move_left(rest_width);
-          continue;
+          else
+          {
+            syscall_info_show_move_down(1);
+            // syscall_info_show_move_left(width);
+            continue;
+          }
         }
-        */
+
         for (int w = 0; w < rest_width; w++)
         {
           syscall_info_show(i, " ");
