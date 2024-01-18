@@ -335,9 +335,9 @@ void display()
     for (int w = 0; w < rest_width; w++)
     {
       syscall_info_show(SYSCALL_INFO_SHOW_SIZE - 1, " ");
-      syscall_info_show_move_down(1);
-      syscall_info_show_move_left(rest_width);
     }
+    syscall_info_show_move_down(1);
+    syscall_info_show_move_left(rest_width);
   }
 }
 
