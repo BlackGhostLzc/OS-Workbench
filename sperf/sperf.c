@@ -108,7 +108,7 @@ void handle_line(char *line)
   update_sysinfo(sys_name, sys_time);
 }
 
-int myCompare(Sys_Info *a, Sys_Info *b)
+int myCompare(const Sys_Info *a, const Sys_Info *b)
 {
   return a->time < b->time;
 }
