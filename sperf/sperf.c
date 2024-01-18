@@ -262,7 +262,7 @@ void display()
     double percent = sys_info[i].time / total_time;
 
     char buf[100];
-    snprintf(buf, sizeof(buf), "%.*s(%%%d)", 64, sys_info[i].name, (int)(percent * 100));
+    snprintf(buf, sizeof(buf), "%.*s(%d%%)", 64, sys_info[i].name, (int)(percent * 100));
 
     if (i % 2 == 0)
     {
@@ -283,14 +283,16 @@ void display()
             {
               syscall_info_show(i, " ");
             }
+            syscall_info_show_move_down(1);
+            syscall_info_show_move_left(width);
+            continue;
           }
           else
           {
+            syscall_info_show_move_down(1);
+            // syscall_info_show_move_left(width);
+            continue;
           }
-
-          syscall_info_show_move_down(1);
-          syscall_info_show_move_left(width);
-          continue;
         }
 
         for (int w = 0; w < width; w++)
