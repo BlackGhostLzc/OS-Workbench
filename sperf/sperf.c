@@ -267,9 +267,19 @@ void display()
       // 在哪里写系统调用的名字呢 height / 2 处
       for (int h = 0; h < rest_height; h++)
       {
-        if (h == rest_height / 2)
+        if (h == 0)
         {
+          syscall_info_show(i, sys_info[i].name);
+          if (strlen(sys_info[i].name) < width)
+          {
+            for (int t = 0; t < width - strlen(sys_info[i].name); t++)
+            {
+              syscall_info_show(i, " ");
+            }
+          }
+
           syscall_info_show_move_down(1);
+          syscall_info_show_move_left(width);
           continue;
         }
         for (int w = 0; w < width; w++)
