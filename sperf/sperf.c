@@ -266,6 +266,7 @@ void display()
       int width = percent * rest_width;
       for (int h = 0; h < rest_height; h++)
       {
+        /*
         if (h == rest_height / 2)
         {
           syscall_info_show(i, sys_info[i].name);
@@ -281,6 +282,7 @@ void display()
           syscall_info_show_move_left(width);
           continue;
         }
+        */
         for (int w = 0; w < width; w++)
         {
           syscall_info_show(i, " ");
