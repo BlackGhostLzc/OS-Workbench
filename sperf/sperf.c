@@ -71,9 +71,9 @@ void update_sysinfo(char *sys_name, double sys_time)
 {
   for (int i = 0; i < sys_info_id; i++)
   {
-    if (strcmp(sys_name, sys_info[sys_info_id].name) == 0)
+    if (strcmp(sys_name, sys_info[i].name) == 0)
     {
-      sys_info[sys_info_id].time += sys_time;
+      sys_info[i].time += sys_time;
       return;
     }
   }
