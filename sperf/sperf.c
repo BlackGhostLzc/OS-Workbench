@@ -295,7 +295,7 @@ void display()
     else
     {
       int height = percent * rest_height;
-      for (int h = 0; h < rest_height; h++)
+      for (int h = 0; h < height; h++)
       {
         /*
         if (h == rest_height / 2)
