@@ -262,7 +262,7 @@ void display()
     double percent = sys_info[i].time / total_time;
 
     char buf[64];
-    sprintf(buf, "%s(%d)", sys_info[i].name, (int)(percent * 100));
+    snprintf(buf, sizeof(buf), "%s(%d)", sys_info[i].name, (int)(percent * 100));
 
     if (i % 2 == 0)
     {
