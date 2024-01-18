@@ -262,7 +262,8 @@ void display()
     double percent = sys_info[i].time / total_time;
 
     char buf[100];
-    snprintf(buf, sizeof(buf), "%.*s(%d%%)", 64, sys_info[i].name, (int)(percent * 100));
+    // snprintf(buf, sizeof(buf), "%.*s(%d%%)", 64, sys_info[i].name, (int)(percent * 100));
+    sprintf(buf, "%d%%", (int)(percent * 100));
 
     if (i % 2 == 0)
     {
@@ -272,14 +273,14 @@ void display()
 
         if (h == rest_height / 2)
         {
-          if (width >= strlen(buf))
+          if (width >= strlen(sys_info[i].name))
           {
-            for (int k = 0; k < (width - strlen(buf)) / 2; k++)
+            for (int k = 0; k < (width - strlen(sys_info[i].name)) / 2; k++)
             {
               syscall_info_show(i, " ");
             }
-            syscall_info_show(i, buf);
-            for (int k = 0; k < width - (width - strlen(buf)) / 2 - strlen(buf); k++)
+            syscall_info_show(i, sys_info[i].name);
+            for (int k = 0; k < width - (width - strlen(sys_info[i].name)) / 2 - strlen(sys_info[i].name); k++)
             {
               syscall_info_show(i, " ");
             }
@@ -290,14 +291,29 @@ void display()
           else
           {
 
-            syscall_info_show_move_left(strlen(buf) - width);
-            syscall_info_show(i, buf);
+            syscall_info_show_move_left(strlen(sys_info[i].name) - width);
+            syscall_info_show(i, sys_info[i].name);
 
             syscall_info_show_move_left(width);
             syscall_info_show_move_down(1);
             // syscall_info_show_move_left(width);
             continue;
           }
+        }
+        if (h == rest_height / 2 + 1)
+        {
+          for (int k = 0; k < (width - strlen(buf)) / 2; k++)
+          {
+            syscall_info_show(i, " ");
+          }
+          syscall_info_show(i, sys_info[i].name);
+          for (int k = 0; k < width - (width - strlen(buf)) / 2 - strlen(buf); k++)
+          {
+            syscall_info_show(i, " ");
+          }
+          syscall_info_show_move_down(1);
+          syscall_info_show_move_left(width);
+          continue;
         }
 
         for (int w = 0; w < width; w++)
@@ -317,14 +333,14 @@ void display()
 
         if (h == height / 2)
         {
-          if (rest_width >= strlen(buf))
+          if (rest_width >= strlen(sys_info[i].name))
           {
-            for (int k = 0; k < (rest_width - strlen(buf)) / 2; k++)
+            for (int k = 0; k < (rest_width - strlen(sys_info[i].name)) / 2; k++)
             {
               syscall_info_show(i, " ");
             }
-            syscall_info_show(i, buf);
-            for (int k = 0; k < rest_width - (rest_width - strlen(buf)) / 2 - strlen(buf); k++)
+            syscall_info_show(i, sys_info[i].name);
+            for (int k = 0; k < rest_width - (rest_width - strlen(sys_info[i].name)) / 2 - strlen(sys_info[i].name); k++)
             {
               syscall_info_show(i, " ");
             }
@@ -335,14 +351,17 @@ void display()
           else
           {
             // 光标往左移一点?
-            syscall_info_show_move_left(strlen(buf) - rest_width);
-            syscall_info_show(i, buf);
+            syscall_info_show_move_left(strlen(sys_info[i].name) - rest_width);
+            syscall_info_show(i, sys_info[i].name);
 
             syscall_info_show_move_left(rest_width);
             syscall_info_show_move_down(1);
             // syscall_info_show_move_left(width);
             continue;
           }
+        }
+        if (h == height / 2 + 1)
+        {
         }
 
         for (int w = 0; w < rest_width; w++)
