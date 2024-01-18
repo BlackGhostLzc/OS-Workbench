@@ -253,7 +253,7 @@ void display()
   int rest_width = SYSCALL_INFO_WINDOW_WIDTH;
   int rest_height = SYSCALL_INFO_WINDOW_HEIGHT;
 
-  for (int i = 0; i < min(SYSCALL_INFO_SHOW_SIZE, sys_info_id); i++)
+  for (int i = 0; i < min(SYSCALL_INFO_SHOW_SIZE, sys_info_id) - 1; i++)
   {
     syscall_info_show_position_init();
     syscall_info_show_move_down(SYSCALL_INFO_WINDOW_HEIGHT - rest_height);
@@ -323,6 +323,20 @@ void display()
       }
 
       rest_height = rest_height - height;
+    }
+  }
+
+  syscall_info_show_position_init();
+  syscall_info_show_move_down(SYSCALL_INFO_WINDOW_HEIGHT - rest_height);
+  syscall_info_show_move_right(SYSCALL_INFO_WINDOW_WIDTH - rest_width);
+
+  for (int h = 0; h < rest_height; h++)
+  {
+    for (int w = 0; w < rest_width; w++)
+    {
+      syscall_info_show(SYSCALL_INFO_SHOW_SIZE - 1, " ");
+      syscall_info_show_move_down(1);
+      syscall_info_show_move_left(rest_width);
     }
   }
 }
