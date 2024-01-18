@@ -261,18 +261,25 @@ void display()
 
     double percent = sys_info[i].time / total_time;
 
+    char buf[64];
+    sprintf(buf, "%s(%d)", sys_info[i].name, (int)(percent * 100));
+
     if (i % 2 == 0)
     {
       int width = percent * rest_width;
       for (int h = 0; h < rest_height; h++)
       {
-        /*
+
         if (h == rest_height / 2)
         {
-          syscall_info_show(i, sys_info[i].name);
-          if (strlen(sys_info[i].name) < width)
+          if (width >= strlen(buf))
           {
-            for (int t = 0; t < width - strlen(sys_info[i].name); t++)
+            for (int k = 0; k < (width - strlen(buf)) / 2; k++)
+            {
+              syscall_info_show(i, " ");
+            }
+            syscall_info_show(i, buf);
+            for (int k = 0; k < width - (width - strlen(buf)) / 2 - strlen(buf); k++)
             {
               syscall_info_show(i, " ");
             }
@@ -282,7 +289,7 @@ void display()
           syscall_info_show_move_left(width);
           continue;
         }
-        */
+
         for (int w = 0; w < width; w++)
         {
           syscall_info_show(i, " ");
