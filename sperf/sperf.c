@@ -262,21 +262,21 @@ void display()
     double percent = sys_info[i].time / total_time;
     if (i % 2)
     {
-      // 高度填完, 宽度占比计算
-      printf(" hhh \n\n");
+
       int width = percent * rest_width;
       // 在哪里写系统调用的名字呢 height / 2 处
       for (int h = 0; h < rest_height; h++)
       {
         if (h == rest_height / 2)
         {
-
+          syscall_info_show_move_down(1);
           continue;
         }
         for (int w = 0; w < width; w++)
         {
           syscall_info_show(i, " ");
         }
+        syscall_info_show_move_down(1);
       }
       rest_width = rest_width - width;
     }
