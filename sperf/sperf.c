@@ -169,10 +169,10 @@ void parent()
 
   // 排序 ， 展示
   qsort(sys_info, sys_info_id, sizeof(sys_info[0]), myCompare);
-  for (int i = 0; i < sys_info_id; i++)
-  {
-    printf("%s\t%lf\n", sys_info[i].name, sys_info[i].time);
-  }
+  // for (int i = 0; i < sys_info_id; i++)
+  // {
+  //   printf("%s\t%lf\n", sys_info[i].name, sys_info[i].time);
+  // }
 
   display();
 }
