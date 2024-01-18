@@ -277,6 +277,7 @@ void display()
           syscall_info_show(i, " ");
         }
       }
+      rest_width = rest_width - width;
     }
   }
 }
