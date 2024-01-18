@@ -253,7 +253,7 @@ void display()
   {
     // syscall_info_show()
     double percent = sys_info[i].time / total_time;
-    printf("%lf", percent);
+    printf("%lf  ", percent);
   }
 }
 
