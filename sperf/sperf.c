@@ -10,6 +10,8 @@ char file_path[64];
 
 int pipefd[2];
 
+void display();
+
 // /bin/strace -o file_path -T ls -a
 // ./sperf pstree
 // strace -o file_path -T pstree NULL
