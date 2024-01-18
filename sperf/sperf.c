@@ -263,11 +263,9 @@ void display()
     if (i % 2 == 0)
     {
       int width = percent * rest_width;
-      printf("%d\n", width);
-      // 在哪里写系统调用的名字呢 height / 2 处
       for (int h = 0; h < rest_height; h++)
       {
-        if (h == 0)
+        if (h == rest_height / 2)
         {
           syscall_info_show(i, sys_info[i].name);
           if (strlen(sys_info[i].name) < width)
@@ -290,6 +288,9 @@ void display()
         syscall_info_show_move_left(width);
       }
       rest_width = rest_width - width;
+    }
+    else
+    {
     }
   }
 }
