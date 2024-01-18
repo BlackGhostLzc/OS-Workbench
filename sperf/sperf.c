@@ -331,7 +331,7 @@ void display()
       for (int h = 0; h < height; h++)
       {
 
-        if (h == height / 2)
+        if (h == (height - 1) / 2)
         {
           if (rest_width >= strlen(sys_info[i].name))
           {
