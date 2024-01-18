@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <regex.h>
 
 extern char **__environ;
 char **child_argv;
@@ -42,6 +43,53 @@ void child()
   printf("Should never get here\n");
 }
 
+typedef struct Sys_Info
+{
+  char *name;
+  double time;
+} Sys_Info;
+
+Sys_Info sys_info[400];
+
+int ifexist(const char *line, char target)
+{
+  int idx = 0;
+  int len = strlen(line);
+  while (idx < len)
+  {
+    if (line[idx] == target)
+    {
+      return 1;
+    }
+    idx++;
+  }
+  return 0;
+}
+
+void handle_line(char *line)
+{
+  // 获取系统调用的名字 和 时间
+  if (!ifexist(line, '<') && !ifexist(line, '>'))
+  {
+    return;
+  }
+  char sys_name[64];
+  char systimechar[64];
+  double sys_time = 0;
+  int idx = 0;
+  while (line[idx] != '(')
+  {
+    sys_name[idx] = line[idx];
+    idx++;
+  }
+  while (line[idx] != '<')
+  {
+    idx++;
+  }
+  int result = sscanf(line, "%*[^<]<%64[^>]>", systimechar);
+  printf("%s\t%s\n", sys_name, systimechar);
+}
+
 void parent()
 {
   // 父进程关闭写口
@@ -77,6 +125,7 @@ void parent()
       // printf("%s", line);
 
       // 处理这行输出 .....
+      handle_line(line);
 
       line_idx = 0;
       flag = 0;
