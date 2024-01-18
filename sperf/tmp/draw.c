@@ -63,9 +63,8 @@ int main()
     // 在终端上显示 syscall 信息
     for (int i = 0; i < SYSCALL_INFO_SHOW_SIZE; ++i)
     {
+        syscall_info_show_position_init();
+        syscall_info_show_move_down(2 * i);
         syscall_info_show(i, "Syscall Info");
-        syscall_info_show(i, "                         ");
-        // 移动光标到下一行
-        syscall_info_show_move_down(2);
     }
 }

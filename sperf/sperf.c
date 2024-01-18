@@ -195,7 +195,7 @@ void parent()
 // 设置终端展示时候的窗口高
 #define SYSCALL_INFO_WINDOW_HEIGHT (40)
 // 设置终端展示时候的窗口宽
-#define SYSCALL_INFO_WINDOW_WIDTH (80)
+#define SYSCALL_INFO_WINDOW_WIDTH (60)
 
 #define syscall_info_show_format(color) ("\e[" #color ";37m%s\e[0m")
 const char *syscall_info_show_formats[SYSCALL_INFO_SHOW_SIZE] = {syscall_info_show_format(42), syscall_info_show_format(45), syscall_info_show_format(43), syscall_info_show_format(44), syscall_info_show_format(46)};
@@ -246,14 +246,38 @@ int min(int a, int b)
     return a;
   return b;
 }
+
 void display()
 {
   // 展示五个系统调用,其他为others
+  int rest_width = SYSCALL_INFO_WINDOW_WIDTH;
+  int rest_height = SYSCALL_INFO_WINDOW_HEIGHT;
+
   for (int i = 0; i < min(SYSCALL_INFO_SHOW_SIZE, sys_info_id); i++)
   {
-    // syscall_info_show()
+    syscall_info_show_position_init();
+    syscall_info_show_move_down(SYSCALL_INFO_WINDOW_HEIGHT - rest_height);
+    syscall_info_show_move_right(SYSCALL_INFO_WINDOW_WIDTH - rest_width);
+
     double percent = sys_info[i].time / total_time;
-    printf("%lf  ", percent);
+    if (i % 2)
+    {
+      // 高度填完, 宽度占比计算
+      int width = percent * rest_width;
+      // 在哪里写系统调用的名字呢 height / 2 处
+      for (int h = 0; h < rest_height; h++)
+      {
+        if (h == rest_height / 2)
+        {
+
+          continue;
+        }
+        for (int w = 0; w < width; w++)
+        {
+          syscall_info_show(i, " ");
+        }
+      }
+    }
   }
 }
 
