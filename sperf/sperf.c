@@ -306,7 +306,7 @@ void display()
           {
             syscall_info_show(i, " ");
           }
-          syscall_info_show(i, sys_info[i].name);
+          syscall_info_show(i, buf);
           for (int k = 0; k < width - (width - strlen(buf)) / 2 - strlen(buf); k++)
           {
             syscall_info_show(i, " ");
