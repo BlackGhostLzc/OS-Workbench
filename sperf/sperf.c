@@ -274,7 +274,7 @@ void display()
         }
         for (int w = 0; w < width; w++)
         {
-          syscall_info_show(i, " ");
+          syscall_info_show(i, "      ");
         }
         syscall_info_show_move_down(1);
       }
