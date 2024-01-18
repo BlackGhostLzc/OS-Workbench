@@ -66,9 +66,10 @@ int main()
         syscall_info_show_position_init();
         syscall_info_show_move_down(2 * i);
         syscall_info_show(i, "Syscall Info");
-        syscall_info_show(i, "  ");
-        syscall_info_show(i, "    ");
-        syscall_info_show(i, "    ");
+        syscall_info_show(i, "                                                  ");
+        syscall_info_show(i, "                                                  ");
+        "
+            syscall_info_show(i, "    ");
         syscall_info_show(i, "    ");
         syscall_info_show(i, "    ");
     }
