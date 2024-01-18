@@ -252,6 +252,7 @@ void display()
   // 展示五个系统调用,其他为others
   int rest_width = SYSCALL_INFO_WINDOW_WIDTH;
   int rest_height = SYSCALL_INFO_WINDOW_HEIGHT;
+  double p = 1.0;
 
   for (int i = 0; i < min(SYSCALL_INFO_SHOW_SIZE, sys_info_id) - 1; i++)
   {
@@ -260,6 +261,7 @@ void display()
     syscall_info_show_move_right(SYSCALL_INFO_WINDOW_WIDTH - rest_width);
 
     double percent = sys_info[i].time / total_time;
+    p -= percent;
 
     char buf[100];
     // snprintf(buf, sizeof(buf), "%.*s(%d%%)", 64, sys_info[i].name, (int)(percent * 100));
@@ -394,6 +396,41 @@ void display()
 
   for (int h = 0; h < rest_height; h++)
   {
+    // others
+    if (h == (rest_height - 1) / 2)
+    {
+      for (int k = 0; k < (rest_width - 6) / 2; k++)
+      {
+        syscall_info_show(4, " ");
+      }
+      syscall_info_show(4, "others");
+      for (int k = 0; k < rest_width - (rest_width - 6) / 2 - 6; k++)
+      {
+        syscall_info_show(4, " ");
+      }
+      syscall_info_show_move_down(1);
+      syscall_info_show_move_left(rest_width);
+      continue;
+    }
+
+    if (h == (rest_height - 1) / 2 + 1)
+    {
+      char buf[100];
+      sprintf(buf, "%d%%", (int)(100 * p));
+      for (int k = 0; k < (rest_width - strlen(buf)) / 2; k++)
+      {
+        syscall_info_show(4, " ");
+      }
+      syscall_info_show(4, buf);
+      for (int k = 0; k < rest_width - (rest_width - strlen(buf)) / 2 - strlen(buf); k++)
+      {
+        syscall_info_show(4, " ");
+      }
+      syscall_info_show_move_down(1);
+      syscall_info_show_move_left(rest_width);
+      continue;
+    }
+
     for (int w = 0; w < rest_width; w++)
     {
       syscall_info_show(SYSCALL_INFO_SHOW_SIZE - 1, " ");
