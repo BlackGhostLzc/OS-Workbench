@@ -79,7 +79,7 @@ void update_sysinfo(char *sys_name, double sys_time)
   }
 
   strcpy(sys_info[sys_info_id].name, sys_name);
-  sys_info[sys_info_id].time = 0;
+  sys_info[sys_info_id].time = sys_time;
 
   sys_info_id++;
 }
