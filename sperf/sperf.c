@@ -148,7 +148,7 @@ int main(int argc, char *argv[])
 
   fflush(stdout);
   child_argv = (char **)malloc((argc + 4) * sizeof(char *));
-  child_argv[argc + 4] = NULL;
+  child_argv[argc + 3] = NULL;
 
   init_childargv(argc, argv);
 
