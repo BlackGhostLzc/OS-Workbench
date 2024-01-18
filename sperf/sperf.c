@@ -108,6 +108,11 @@ void handle_line(char *line)
   update_sysinfo(sys_name, sys_time);
 }
 
+int myCompare(Sys_Info *a, Sys_Info *b)
+{
+  return a->time < b->time;
+}
+
 void parent()
 {
   // 父进程关闭写口
@@ -156,6 +161,13 @@ void parent()
       continue;
     }
   }
+
+  // 排序 ， 展示
+  qsort(sys_info, sys_info_id, sizeof(sys_info[0]), myCompare);
+  for (int i = 0; i < sys_info_id; i++)
+  {
+    printf("%s\t%lf\n", sys_info[i].name, sys_info[i].time);
+  }
 }
 
 // ./sperf ls -a        argc = 3
@@ -179,13 +191,9 @@ int main(int argc, char *argv[])
   if (pid == 0)
   {
     child();
-    while (1)
-      ;
   }
   else
   {
     parent();
-    while (1)
-      ;
   }
 }
