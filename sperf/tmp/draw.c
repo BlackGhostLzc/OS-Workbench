@@ -68,5 +68,8 @@ int main()
         syscall_info_show(i, "Syscall Info");
         syscall_info_show(i, "  ");
         syscall_info_show(i, "    ");
+        syscall_info_show(i, "    ");
+        syscall_info_show(i, "    ");
+        syscall_info_show(i, "    ");
     }
 }
