@@ -263,6 +263,7 @@ void display()
     if (i % 2)
     {
       // 高度填完, 宽度占比计算
+      printf(" hhh \n\n");
       int width = percent * rest_width;
       // 在哪里写系统调用的名字呢 height / 2 处
       for (int h = 0; h < rest_height; h++)
