@@ -253,7 +253,7 @@ void display()
   int rest_width = SYSCALL_INFO_WINDOW_WIDTH;
   int rest_height = SYSCALL_INFO_WINDOW_HEIGHT;
 
-  for (int i = 0; i < min(SYSCALL_INFO_SHOW_SIZE, sys_info_id) - 1; i++)
+  for (int i = 0; i < min(SYSCALL_INFO_SHOW_SIZE, sys_info_id); i++)
   {
     syscall_info_show_position_init();
     syscall_info_show_move_down(SYSCALL_INFO_WINDOW_HEIGHT - rest_height);
