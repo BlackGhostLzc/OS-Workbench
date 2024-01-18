@@ -82,12 +82,10 @@ void handle_line(char *line)
     sys_name[idx] = line[idx];
     idx++;
   }
-  while (line[idx] != '<')
-  {
-    idx++;
-  }
+
   int result = sscanf(line, "%*[^<]<%64[^>]>", systimechar);
-  printf("%s\t%s\n", sys_name, systimechar);
+  result = sscanf(systimechar, "%lf", &sys_time);
+  printf("%s\t%lf\n", sys_name, sys_time);
 }
 
 void parent()
