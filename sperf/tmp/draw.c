@@ -59,7 +59,7 @@ int main()
 {
     // 初始化终端位置
     char buf[10];
-    snprintf(buf, sizeof(buf), "%s(%d)", "open", (int)(0.65 * 100));
+    snprintf(buf, sizeof(buf), "%s(%%%d)", "open", (int)(0.65 * 100));
 
     printf("%s\n", buf);
 }
