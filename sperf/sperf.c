@@ -297,6 +297,7 @@ void display()
       int height = percent * rest_height;
       for (int h = 0; h < rest_height; h++)
       {
+        /*
         if (h == rest_height / 2)
         {
           syscall_info_show(i, sys_info[i].name);
@@ -312,6 +313,7 @@ void display()
           syscall_info_show_move_left(rest_width);
           continue;
         }
+        */
         for (int w = 0; w < rest_width; w++)
         {
           syscall_info_show(i, " ");
