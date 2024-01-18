@@ -83,8 +83,8 @@ void handle_line(char *line)
     idx++;
   }
 
-  int result = sscanf(line, "%*[^<]<%64[^>]>", systimechar);
-  result = sscanf(systimechar, "%lf", &sys_time);
+  sscanf(line, "%*[^<]<%64[^>]>", systimechar);
+  sscanf(systimechar, "%lf", &sys_time);
   printf("%s\t%lf\n", sys_name, sys_time);
 }
 
