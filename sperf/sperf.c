@@ -271,7 +271,7 @@ void display()
       for (int h = 0; h < rest_height; h++)
       {
 
-        if (h == (rest_height - 2) / 2)
+        if (h == (rest_height - 1) / 2)
         {
           if (width >= strlen(sys_info[i].name))
           {
@@ -300,7 +300,7 @@ void display()
             continue;
           }
         }
-        if (h == (rest_height - 2) / 2 + 1)
+        if (h == (rest_height - 1) / 2 + 1)
         {
           for (int k = 0; k < (width - strlen(buf)) / 2; k++)
           {
@@ -360,8 +360,20 @@ void display()
             continue;
           }
         }
-        if (h == height / 2 + 1)
+        if (h == (height - 1) / 2 + 1)
         {
+          for (int k = 0; k < (rest_width - strlen(buf)) / 2; k++)
+          {
+            syscall_info_show(i, " ");
+          }
+          syscall_info_show(i, buf);
+          for (int k = 0; k < rest_width - (rest_width - strlen(buf)) / 2 - strlen(buf); k++)
+          {
+            syscall_info_show(i, " ");
+          }
+          syscall_info_show_move_down(1);
+          syscall_info_show_move_left(rest_width);
+          continue;
         }
 
         for (int w = 0; w < rest_width; w++)
