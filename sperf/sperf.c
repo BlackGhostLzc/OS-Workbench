@@ -193,9 +193,9 @@ void parent()
  */
 
 // 设置终端展示时候的窗口高
-#define SYSCALL_INFO_WINDOW_HEIGHT (40)
+#define SYSCALL_INFO_WINDOW_HEIGHT (30)
 // 设置终端展示时候的窗口宽
-#define SYSCALL_INFO_WINDOW_WIDTH (60)
+#define SYSCALL_INFO_WINDOW_WIDTH (40)
 
 #define syscall_info_show_format(color) ("\e[" #color ";37m%s\e[0m")
 const char *syscall_info_show_formats[SYSCALL_INFO_SHOW_SIZE] = {syscall_info_show_format(42), syscall_info_show_format(45), syscall_info_show_format(43), syscall_info_show_format(44), syscall_info_show_format(46)};
@@ -274,9 +274,10 @@ void display()
         }
         for (int w = 0; w < width; w++)
         {
-          syscall_info_show(i, "      ");
+          syscall_info_show(i, " ");
         }
         syscall_info_show_move_down(1);
+        syscall_info_show_move_left(width);
       }
       rest_width = rest_width - width;
     }
