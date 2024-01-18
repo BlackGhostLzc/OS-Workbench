@@ -289,6 +289,11 @@ void display()
           }
           else
           {
+
+            syscall_info_show_move_left(strlen(buf) - width);
+            syscall_info_show(i, buf);
+
+            syscall_info_show_move_left(width);
             syscall_info_show_move_down(1);
             // syscall_info_show_move_left(width);
             continue;
@@ -329,6 +334,11 @@ void display()
           }
           else
           {
+            // 光标往左移一点?
+            syscall_info_show_move_left(strlen(buf) - rest_width);
+            syscall_info_show(i, buf);
+
+            syscall_info_show_move_left(rest_width);
             syscall_info_show_move_down(1);
             // syscall_info_show_move_left(width);
             continue;

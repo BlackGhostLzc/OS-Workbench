@@ -58,8 +58,11 @@ void syscall_info_show_move_right(int idx)
 int main()
 {
     // 初始化终端位置
-    char buf[10];
-    snprintf(buf, sizeof(buf), "%s(%%%d)", "open", (int)(0.65 * 100));
+    syscall_info_show_position_init();
 
-    printf("%s\n", buf);
+    syscall_info_show(0, "Syscall Info");
+
+    syscall_info_show_position_init();
+
+    syscall_info_show(1, "           ");
 }
