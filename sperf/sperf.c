@@ -260,9 +260,8 @@ void display()
     syscall_info_show_move_right(SYSCALL_INFO_WINDOW_WIDTH - rest_width);
 
     double percent = sys_info[i].time / total_time;
-    if (i % 2)
+    if (i % 2 == 0)
     {
-
       int width = percent * rest_width;
       // 在哪里写系统调用的名字呢 height / 2 处
       for (int h = 0; h < rest_height; h++)
@@ -274,7 +273,7 @@ void display()
         }
         for (int w = 0; w < width; w++)
         {
-          syscall_info_show(i, "  ");
+          syscall_info_show(i, " ");
         }
         syscall_info_show_move_down(1);
         syscall_info_show_move_left(width);
