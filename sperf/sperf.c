@@ -74,7 +74,10 @@ void parent()
 
     if (flag)
     {
-      printf("%s", line);
+      // printf("%s", line);
+
+      // 处理这行输出 .....
+
       line_idx = 0;
       flag = 0;
       memset(line, 0, sizeof(line));
