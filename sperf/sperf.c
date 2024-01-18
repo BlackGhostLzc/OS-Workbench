@@ -193,7 +193,7 @@ void parent()
  */
 
 // 设置终端展示时候的窗口高
-#define SYSCALL_INFO_WINDOW_HEIGHT (25)
+#define SYSCALL_INFO_WINDOW_HEIGHT (20)
 // 设置终端展示时候的窗口宽
 #define SYSCALL_INFO_WINDOW_WIDTH (120)
 
