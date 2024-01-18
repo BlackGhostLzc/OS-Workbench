@@ -240,6 +240,12 @@ void syscall_info_show_move_right(int idx)
 // ./sperf ls -a        argc = 3
 // strace -o filename -T ls -a
 //  0      1     2    3  4  5  6
+int min(int a, int b)
+{
+  if (a < b)
+    return a;
+  return b;
+}
 void display()
 {
   // 展示五个系统调用,其他为others
