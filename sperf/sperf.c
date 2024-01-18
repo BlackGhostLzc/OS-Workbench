@@ -51,6 +51,7 @@ typedef struct Sys_Info
 
 Sys_Info sys_info[400];
 static int sys_info_id = 0;
+double total_time = 0;
 
 int ifexist(const char *line, char target)
 {
@@ -114,8 +115,6 @@ int myCompare(const void *a, const void *b)
 {
   return ((Sys_Info *)(a))->time < ((Sys_Info *)(b))->time;
 }
-
-double total_time = 0;
 
 void parent()
 {
