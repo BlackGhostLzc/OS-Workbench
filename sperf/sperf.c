@@ -271,7 +271,7 @@ void display()
       for (int h = 0; h < rest_height; h++)
       {
 
-        if (h == (rest_height - 1) / 2)
+        if (h == (rest_height - 2) / 2)
         {
           if (width >= strlen(sys_info[i].name))
           {
@@ -300,7 +300,7 @@ void display()
             continue;
           }
         }
-        if (h == (rest_height - 1) / 2 + 1)
+        if (h == (rest_height - 2) / 2 + 1)
         {
           for (int k = 0; k < (width - strlen(buf)) / 2; k++)
           {
