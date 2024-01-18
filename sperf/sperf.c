@@ -45,11 +45,12 @@ void child()
 
 typedef struct Sys_Info
 {
-  char *name;
+  char name[64];
   double time;
 } Sys_Info;
 
 Sys_Info sys_info[400];
+static int sys_info_id = 0;
 
 int ifexist(const char *line, char target)
 {
@@ -64,6 +65,23 @@ int ifexist(const char *line, char target)
     idx++;
   }
   return 0;
+}
+
+void update_sysinfo(char *sys_name, double sys_time)
+{
+  for (int i = 0; i < sys_info_id; i++)
+  {
+    if (strcmp(sys_name, sys_info[sys_info_id].name) == 0)
+    {
+      sys_info[sys_info_id].time += sys_time;
+      return;
+    }
+  }
+
+  strcpy(sys_info[sys_info_id].name, sys_name);
+  sys_info[sys_info_id].time = 0;
+
+  sys_info_id++;
 }
 
 void handle_line(char *line)
@@ -85,7 +103,9 @@ void handle_line(char *line)
 
   sscanf(line, "%*[^<]<%64[^>]>", systimechar);
   sscanf(systimechar, "%lf", &sys_time);
-  printf("%s\t%lf\n", sys_name, sys_time);
+  // printf("%s\t%lf\n", sys_name, sys_time);
+
+  update_sysinfo(sys_name, sys_time);
 }
 
 void parent()
@@ -120,8 +140,6 @@ void parent()
 
     if (flag)
     {
-      // printf("%s", line);
-
       // 处理这行输出 .....
       handle_line(line);
 
@@ -149,7 +167,6 @@ int main(int argc, char *argv[])
   fflush(stdout);
   child_argv = (char **)malloc((argc + 4) * sizeof(char *));
   child_argv[argc + 3] = NULL;
-
   init_childargv(argc, argv);
 
   if (pipe(pipefd) < 0)
